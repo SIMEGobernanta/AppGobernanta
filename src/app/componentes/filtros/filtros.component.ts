@@ -28,7 +28,7 @@ export class FiltrosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.forEach( subscription => subscription.unsubscribe());
+    this.subscription.forEach(subscription => subscription.unsubscribe());
   }
 
   busqueda(value:HTMLInputElement):void {
@@ -37,13 +37,9 @@ export class FiltrosComponent implements OnInit, OnDestroy {
     let aux: RoomInfo[] = [];
 
     if (valorInput) {
-      for (let habitacion of this.aux) {
-        if (habitacion.name.includes(valorInput)) {
-          aux.push(habitacion);
-        }
-      }
+      aux = this.aux.filter(habitacion => habitacion.name.includes(valorInput));
     } else {
-        aux = this.habitaciones;
+      aux = this.habitaciones;
     }
     this.arrayFiltro.sendArray.emit(aux);
   }
