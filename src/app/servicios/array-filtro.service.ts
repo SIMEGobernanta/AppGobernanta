@@ -8,6 +8,5 @@ export class ArrayFiltroService {
 
   public sendArray: EventEmitter<RoomInfo[]> = new EventEmitter;
 
-
   constructor() { }
 }

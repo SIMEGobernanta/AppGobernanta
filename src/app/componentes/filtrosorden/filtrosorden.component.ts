@@ -74,8 +74,6 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
     //Añado estilos a las flechas en función de que he hecho
     this.resolverFiltro(valor);
 
-
-
     //Actualizo el array que muestro por pantalla en el componente principal
     this.arrayFiltro.sendArray.emit(habitaciones);
   }
@@ -86,72 +84,48 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
       case 'adultos':
         this.filtroUtilizado = 'adultos';
         habitaciones.sort(function (a,b):number {
-          if (a.adults < b.adults) {
-            return 1;
-          }
-          if (a.adults > b.adults) {
-            return -1;
-          }
+          if (a.adults < b.adults) {return 1;}
+          if (a.adults > b.adults) {return -1;}
           return 0;
         });
       break;
       case 'niños':
         this.filtroUtilizado = 'niños';
         habitaciones.sort(function (a,b):number {
-          if (a.kids < b.kids) {
-            return 1;
-          }
-          if (a.kids > b.kids) {
-            return -1;
-          }
+          if (a.kids < b.kids) {return 1;}
+          if (a.kids > b.kids) {return -1;}
           return 0;
         });
       break;
       case 'cunas':
         this.filtroUtilizado = 'cunas';
         habitaciones.sort(function (a,b):number {
-          if (a.babies < b.babies) {
-            return 1;
-          }
-          if (a.babies > b.babies) {
-            return -1;
-          }
+          if (a.babies < b.babies) {return 1;}
+          if (a.babies > b.babies) {return -1;}
           return 0;
         });
       break;
       case 'habitación':
         this.filtroUtilizado = 'habitación';
         habitaciones.sort(function (a,b):number {
-          if (a.name < b.name) {
-            return 1;
-          }
-          if (a.name > b.name) {
-            return -1;
-          }
+          if (a.name < b.name) {return 1;}
+          if (a.name > b.name) {return -1;}
           return 0;
         });
       break;
       case 'entrada':
         this.filtroUtilizado = 'entrada';
         habitaciones.sort(function (a,b):number {
-          if (a.startDate < b.startDate) {
-            return 1;
-          }
-          if (a.startDate > b.startDate) {
-            return -1;
-          }
+          if (a.startDate < b.startDate) {return 1;}
+          if (a.startDate > b.startDate) {return -1;}
           return 0;
         });
       break;
       case 'salida':
         this.filtroUtilizado = 'salida';
         habitaciones.sort(function (a,b):number {
-          if (a.endDate < b.endDate) {
-            return 1;
-          }
-          if (a.endDate > b.endDate) {
-            return -1;
-          }
+          if (a.endDate < b.endDate) {return 1;}
+          if (a.endDate > b.endDate) {return -1;}
           return 0;
         });
       break;
@@ -205,7 +179,8 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
     } else if (clickedComponent == 'flecha-desc') {
       this.tipoFiltrado = false;
     } else if (clickedComponent == 'label') {
-      /*SI CLICO EN LA LABEL
+      /*
+      * SI CLICO EN LA LABEL:
       * Si NO es la primera vez que uso el filtro:
       * Si el filtro es el mismo que la ultima vez y está ordenada de forma ascendente,
       * ordénala de forma descendente y viceversa
