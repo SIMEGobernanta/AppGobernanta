@@ -1,0 +1,43 @@
+CLASE DEL SERVICIO  {
+    public sendarray: EventEmitter<RoomInfo[]> = new EventEmitter<RoomInfo[]>
+    //Falta algo aquí???
+}
+
+COMPONENTES?
+
+// Falta algo en algún componente?
+
+Componente FiltroBloqueadas > suscrita a sendarray (ngOnInit)
+Componente FiltroBloqueadas > emite sendarray ( filtrarBloqueadas() )
+
+Componente Busqueda > suscrita a sendarray (ngOnInit)
+Componente Busqueda > emite sendarray ( busqueda() )
+
+Componente Filtrosorden > suscrita a sendarray (ngOnInit)
+Componente Filtrosorden > emite sendarray ( filtrarDatos() )
+
+Componente Principal > suscrita a sendarray
+
+
+si toco FiltroBloqueadas
+
+hay algo en filtro busqueda? {
+    si hay algo en filtro busqueda: Recibo el array filtrado por búsqueda y filtro las bloqueadas
+    si no hay nada: Filtro el array de habitaciones por bloqueadas
+}
+
+si toco FiltroBusqueda 
+
+esta bloqueadas checked? {
+    si esta checked: Recibo el array filtrado por bloqueadas y filtro por búsqueda
+    si no esta checked: Filtro el array de habitaciones por busqueda
+}
+
+si toco Filtrosorden
+
+hay algo en FiltroBusqueda? + esta bloqueada checked? {
+    si 1 y no dos: Ordeno el array filtrado por busqueda
+    si 1 y dos: Ordeno el array filtrado por busqueda y bloqueadas
+    si no 1 y dos: Ordeno el array filtrado por bloqueadas
+    si no 1 y no 2: Ordeno habitaciones
+}
