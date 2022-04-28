@@ -18,6 +18,7 @@ export class SelectoresComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
   estados = HouseKeeping;
   minDate!: Date;
+  auxiliar2: RoomInfo[] = [];
 
   constructor(private arrayFiltro:ArrayFiltroService) {
 
@@ -41,13 +42,18 @@ export class SelectoresComponent implements OnInit, OnDestroy {
     let aux:RoomInfo[] = [];
 
     if (event.checked) {
+      this.auxiliar2 = JSON.parse(JSON.stringify(this.aux));
       for (let i = 0; i < this.aux.length; i++) {
         if (this.aux[i].blocked) {
           aux.push(this.aux[i]);
         }
       }
     } else {
+      if (this.auxiliar2) {
+        aux = this.auxiliar2;
+      } else {
         aux = this.habitaciones;
+      }
     }
     this.arrayFiltro.emitirArray(aux);
   }
