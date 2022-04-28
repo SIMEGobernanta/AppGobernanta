@@ -1,0 +1,5 @@
+.margin-top-custom {
+  height: 24px !important;
+  display: inline-flex;
+  justify-content: center;
+}

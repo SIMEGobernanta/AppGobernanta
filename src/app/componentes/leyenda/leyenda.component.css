@@ -1,0 +1,19 @@
+.sucia {
+  background-color: yellow;
+  border: 1px solid gray;
+}
+
+.revisada {
+  background-color: green;
+  border: 1px solid gray;
+}
+
+.limpia {
+  background-color: lightskyblue;
+  border: 1px solid gray;
+}
+
+.bloqueada {
+  background-color: red;
+  border: 1px solid gray;
+}

@@ -1,0 +1,30 @@
+.fila {
+  flex-direction: row;
+  height: 130px;
+}
+.borde-custom {
+  border: 1px solid gray;
+}
+.personas {
+  background-color: white;
+}
+
+.habitacion {
+  border-left: 1px solid gray;
+}
+
+.sucia {
+  background-color: yellow;
+}
+
+.revisada {
+  background-color: green;
+}
+
+.limpia {
+  background-color: lightskyblue;
+}
+
+.bloqueada {
+  background-color: red !important;
+}

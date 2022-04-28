@@ -1,0 +1,15 @@
+<h3 class="text-center"> Número de la habitación: {{data.name}} </h3>
+
+<div class="w-75 m-auto text-center border-black">
+  <p class="pt-2"> En esta habitación hay {{data.adults}} adultos </p>
+  <p> En esta habitación hay {{data.kids}} niños </p>
+  <p> En esta habitación hay {{data.babies}} bebés </p>
+</div>
+<div class="m-3"> </div>
+<div class="w-75 m-auto text-center border-black">
+  <p class="pt-2" *ngIf="data.contactName"> {{data.contactName}} </p>
+  <p class="pt-2" *ngIf="data.blocked"> La habitacion está bloqueada </p>
+  <p class="pt-2" *ngIf="!data.blocked"> El estado de la habitación es: {{data.houseKeeping.toLocaleLowerCase()}} </p>
+  <p *ngIf="!data.blocked"> <mat-icon style="color:blue">input</mat-icon>  {{data.startDate | date: 'dd-MM-YYYY' }} </p>
+  <p *ngIf="!data.blocked"> <mat-icon style="color:red">output</mat-icon>  {{data.endDate | date: 'dd-MM-YYYY' }} </p>
+</div>

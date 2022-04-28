@@ -1,0 +1,16 @@
+.custom-pos {
+  display: inline;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+@media (max-width: 767px) {
+  .custom-pos {
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+}
