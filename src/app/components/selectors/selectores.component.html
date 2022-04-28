@@ -19,7 +19,7 @@
       <mat-form-field appearance="fill">
         <mat-label> Seleccione un estado </mat-label>
         <mat-select>
-          <mat-option *ngFor="let estado of estados | keyvalue" [value]="estado.value">
+          <mat-option *ngFor="let estado of houseKeeping | keyvalue" [value]="estado.value">
             {{ estado.value }}
           </mat-option>
         </mat-select>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HouseKeeping, RoomInfo } from './room-info';
-import { ArrayFiltroService } from './servicios/array-filtro.service';
+import {ArrayFiltroService} from './services/array-filtro.service';
+
 
 @Component({
   selector: 'app-root',
@@ -105,7 +106,7 @@ export class AppComponent{
       blocked: false
     }];
 
-    constructor(private arrayFiltro:ArrayFiltroService) {
+    constructor(private arrayFiltro: ArrayFiltroService) {
       this.tomorrow.setDate(this.today.getDate() + 1);
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ArrayFiltroService } from 'src/app/servicios/array-filtro.service';
+import {ArrayFiltroService} from '../../../services/array-filtro.service';
 
 @Component({
   selector: 'app-flechas',
@@ -10,14 +10,14 @@ export class FlechasComponent implements OnInit {
 
   @Output() condition = new EventEmitter<boolean>();
 
-  constructor(private filtroArray:ArrayFiltroService) {
+  constructor(private filterArray: ArrayFiltroService) {
 
   }
 
   ngOnInit(): void {
   }
 
-  return(condicion:boolean) {
+  return(condicion: boolean) {
     this.condition.emit(condicion);
   }
 
