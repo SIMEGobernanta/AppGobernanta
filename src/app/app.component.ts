@@ -14,7 +14,7 @@ export class AppComponent{
   tomorrow =  new Date();
   habitaciones: RoomInfo[] = [
     {
-      name: '100',
+      name: '001',
       contactName: 'Pepe, Gema',
       adults: 2,
       kids: 1,
