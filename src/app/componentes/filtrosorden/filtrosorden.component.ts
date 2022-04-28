@@ -208,7 +208,8 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
       /*SI CLICO EN LA LABEL
       * Si NO es la primera vez que uso el filtro:
       * Si el filtro es el mismo que la ultima vez y está ordenada de forma ascendente,
-      * ordénala de forma descendente y viceversa*/
+      * ordénala de forma descendente y viceversa
+      */
       if (filtroUsado != '') {
         if (filtroUsado == valorFiltro) {
           if (this.tipoFiltrado == true) {
@@ -222,7 +223,8 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
       }
       /*
       * No hace falta hacer un else por que si clicas en la label por primera vez
-      * se sobreentiende que quieres hacerlo de forma ascendente */
+      * se sobreentiende que quieres hacerlo de forma ascendente
+      */
     }
   }
 
