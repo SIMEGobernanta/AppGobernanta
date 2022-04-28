@@ -77,7 +77,7 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
 
 
     //Actualizo el array que muestro por pantalla en el componente principal
-    this.arrayFiltro.emitirArray(habitaciones);
+    this.arrayFiltro.sendArray.emit(habitaciones);
   }
 
   //Función para filtrar el array dependiendo del filtro que quieras utilizar

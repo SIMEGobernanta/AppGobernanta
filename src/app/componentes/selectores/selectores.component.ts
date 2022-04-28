@@ -55,7 +55,7 @@ export class SelectoresComponent implements OnInit, OnDestroy {
         aux = this.habitaciones;
       }
     }
-    this.arrayFiltro.emitirArray(aux);
+    this.arrayFiltro.sendArray.emit(aux);
   }
 
 }

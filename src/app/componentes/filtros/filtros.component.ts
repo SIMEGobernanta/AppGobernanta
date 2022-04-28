@@ -46,7 +46,7 @@ export class FiltrosComponent implements OnInit, OnDestroy {
         aux = this.habitaciones;
     }
 
-    this.arrayFiltro.emitirArray(aux);
+    this.arrayFiltro.sendArray.emit(aux);
   }
 
 
