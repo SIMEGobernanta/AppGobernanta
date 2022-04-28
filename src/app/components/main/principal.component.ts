@@ -24,36 +24,36 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.aux = JSON.parse(JSON.stringify(this.habitaciones));
     this.subscriptions.push(
-      this.arrayFiltro.sendArray.subscribe((resp:RoomInfo[]) => {
+      this.arrayFiltro.sendArray.subscribe((resp: RoomInfo[]) => {
       this.aux = resp;
       })
-    )
+    );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach( subscription => subscription.unsubscribe());
   }
 
-  roomStatus(status:HouseKeeping):string {
+  roomStatus(status: HouseKeeping): string {
     let resul = '';
-    switch(status) {
+    switch (status) {
       case 'DIRTY':
         resul = 'sucia';
-      break;
+        break;
 
       case 'CLEAN':
         resul = 'limpia';
-      break;
+        break;
 
       case 'PENDING_REVIEW':
         resul = 'revisada';
-      break;
+        break;
 
     }
     return resul;
   }
 
-  openDialog(habitacion:RoomInfo): void {
+  openDialog(habitacion: RoomInfo): void {
     const dialogRef = this.dialog.open(CloseDialogComponent, {
       width: '600px',
       data: habitacion

@@ -10,8 +10,8 @@ import {ArrayFiltroService} from '../../services/array-filtro.service';
 })
 export class FiltrosordenComponent implements OnInit, OnDestroy {
 
-  @Input() habitaciones!: RoomInfo[];
-  aux: RoomInfo[] = [];
+  @Input() rooms!: RoomInfo[];
+  roomInfosAux: RoomInfo[] = [];
   subscription: Subscription[] = [];
 
   valor!: string;
@@ -22,10 +22,10 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
   constructor(private filterArray: ArrayFiltroService) { }
 
   ngOnInit(): void {
-    this.aux = JSON.parse(JSON.stringify(this.habitaciones));
+    this.roomInfosAux = JSON.parse(JSON.stringify(this.rooms));
     this.subscription.push(
       this.filterArray.sendArray.subscribe((resp: RoomInfo[]) => {
-        this.aux = resp;
+        this.roomInfosAux = resp;
       })
     );
   }
@@ -54,8 +54,22 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
     this.filterData(filter, clickedComponent);
   }
 
+  /*filter(filter: string, property: string, direction: string): void {
+    if (direction === 'asc') {
+      this.roomInfosAux.sort((a, b) => {
+        if (a['property'] < b['property']) { return 1; }
+        else { return -1; }
+      });
+      return;
+    }
+    this.roomInfosAux.sort((a, b) => {
+      if (a['property'] < b['property']) { return -1; }
+      else { return 1; }
+    });
+  }*/
+
   filterData(filtro: string, clickedComponent: string): void {
-    const habitaciones = this.aux;
+    const rooms = this.roomInfosAux;
     const valor = filtro.toLocaleLowerCase();
 
     /*Miro desde que elemento quiero filtrar el array
@@ -64,18 +78,18 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
     this.checkValue(this.currentFilter.toLocaleLowerCase(), valor, clickedComponent);
 
     // Filtro el array
-    this.switchFilter(valor, habitaciones);
+    this.switchFilter(valor, rooms);
 
     // Invierto el array (ya filtrado) en caso que sea descendente
     if (this.filterType === false) {
-      habitaciones.reverse();
+      rooms.reverse();
     }
 
     // Añado estilos a las flechas en función de que he hecho
     this.solveFilter(valor);
 
     // Actualizo el array que muestro por pantalla en el componente principal
-    this.filterArray.sendArray.emit(habitaciones);
+    this.filterArray.sendArray.emit(rooms);
   }
 
   // Función para filtrar el array dependiendo del filtro que quieras utilizar
