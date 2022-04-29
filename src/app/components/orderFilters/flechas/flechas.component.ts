@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-flechas',
@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./flechas.component.css']
 })
 export class FlechasComponent implements OnInit {
-
+  @Input() isAsc!: boolean;
   @Output() condition = new EventEmitter<boolean>();
 
   constructor() {}
@@ -14,9 +14,9 @@ export class FlechasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  return(condicion: boolean): void {
+  /*return(condicion: boolean): void {
     this.condition.emit(condicion);
-  }
+  }*/
 
 }
 

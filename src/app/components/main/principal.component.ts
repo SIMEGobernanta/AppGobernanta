@@ -13,8 +13,8 @@ import {ArrayFiltroService} from '../../services/array-filtro.service';
 
 export class PrincipalComponent implements OnInit, OnDestroy {
 
-  @Input() habitaciones!: RoomInfo[];
-  aux: RoomInfo[] = [];
+  @Input() rooms!: RoomInfo[];
+  @Input() auxRooms: RoomInfo[] = [];
   subscriptions: Subscription[] = [];
 
   constructor(public dialog: MatDialog, private arrayFiltro: ArrayFiltroService) {
@@ -22,12 +22,12 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.aux = JSON.parse(JSON.stringify(this.habitaciones));
-    this.subscriptions.push(
+    /*this.auxRooms = JSON.parse(JSON.stringify(this.rooms));*/
+   /* this.subscriptions.push(
       this.arrayFiltro.sendArray.subscribe((resp: RoomInfo[]) => {
-      this.aux = resp;
+      this.auxRooms = resp;
       })
-    );
+    );*/
   }
 
   ngOnDestroy(): void {
@@ -40,11 +40,9 @@ export class PrincipalComponent implements OnInit, OnDestroy {
       case 'DIRTY':
         resul = 'sucia';
         break;
-
       case 'CLEAN':
         resul = 'limpia';
         break;
-
       case 'PENDING_REVIEW':
         resul = 'revisada';
         break;
@@ -58,6 +56,11 @@ export class PrincipalComponent implements OnInit, OnDestroy {
       width: '600px',
       data: habitacion
     });
+    this.subscriptions.push(
+      dialogRef.afterClosed().subscribe(resp => {
+        console.log(resp);
+      })
+    );
   }
 }
 

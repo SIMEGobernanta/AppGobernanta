@@ -6,7 +6,7 @@ import { LeyendaComponent } from './components/legend/leyenda.component';
 import { CloseDialogComponent } from './components/main/close-dialog/close-dialog.component';
 import { PrincipalComponent } from './components/main/principal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FiltrosordenComponent } from './components/orderFilters/filtrosorden.component';
+import { FiltersOrderComponent } from './components/orderFilters/filters-order.component';
 import { FlechasComponent } from './components/orderFilters/flechas/flechas.component';
 import { PaginacionComponent } from './components/paginator/paginacion.component';
 import { SelectoresComponent } from './components/selectors/selectores.component';
@@ -31,7 +31,7 @@ import { AppComponent } from './app.component';
     SelectoresComponent,
     FiltrosComponent,
     PrincipalComponent,
-    FiltrosordenComponent,
+    FiltersOrderComponent,
     PaginacionComponent,
     LeyendaComponent,
     CloseDialogComponent,

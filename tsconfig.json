@@ -21,6 +21,9 @@
       "dom"
     ]
   },
+  "rules": {
+    "no-string-literal": false
+  },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

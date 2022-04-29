@@ -1,40 +1,102 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RoomInfo } from 'src/app/room-info';
-import {ArrayFiltroService} from '../../services/array-filtro.service';
+
+interface ISortFilter {
+  id: string;
+  prop: string;
+  label: string;
+  asc: boolean;
+}
 
 @Component({
   selector: 'app-filtrosorden',
-  templateUrl: './filtrosorden.component.html',
-  styleUrls: ['./filtrosorden.component.css']
+  templateUrl: './filters-order.component.html',
+  styleUrls: ['./filters-order.component.css']
 })
-export class FiltrosordenComponent implements OnInit, OnDestroy {
-
-  @Input() rooms!: RoomInfo[];
-  roomInfosAux: RoomInfo[] = [];
+export class FiltersOrderComponent implements OnInit, OnDestroy {
+  @Input() rooms!: any[];
+  isLoading = true;
   subscription: Subscription[] = [];
+  filters: ISortFilter[] = [
+    { id: '0', prop: 'adults', label: 'Adultos', asc: false }, { id: '1', prop: 'kids', label: 'Niños', asc: false },
+    { id: '2', prop: 'cradles' , label: 'Cunas', asc: false }, { id: '3', prop: 'name', label: 'Habitación', asc: false },
+    { id: '4', prop: 'startDate', label: 'Entrada', asc: false }, { id: '5', prop: 'endDate', label: 'Slida', asc: false }
+  ];
+  filterHandler: ISortFilter[] = [];
 
-  valor!: string;
-  filters = ['Adultos', 'Niños', 'Cunas', 'Habitación', 'Entrada', 'Salida'];
-  currentFilter = '';
-  filterType = true;
-
-  constructor(private filterArray: ArrayFiltroService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.roomInfosAux = JSON.parse(JSON.stringify(this.rooms));
-    this.subscription.push(
-      this.filterArray.sendArray.subscribe((resp: RoomInfo[]) => {
-        this.roomInfosAux = resp;
-      })
-    );
+    this.isLoading = false;
   }
 
   ngOnDestroy(): void {
     this.subscription.forEach( subscription => subscription.unsubscribe());
   }
 
-  chooseFilter(filter: string): void {
+  setFilterHandler(filter: ISortFilter): void {
+    const index = this.filterHandler.indexOf(filter);
+    if (index === -1) {
+      this.filterHandler = [];
+      filter.asc = !filter.asc;
+      this.filterHandler.push(filter);
+      this.applyFilter();
+      return;
+    }
+    this.filterHandler[index].asc = !this.filterHandler[index].asc;
+    this.applyFilter();
+  }
+
+  applyFilter(): void {
+    const filter = this.filterHandler[0];
+    switch (filter.prop) {
+      case 'adults':
+      case 'kids':
+      case 'cradles':
+      case 'name':
+        this.filterByNumber(filter);
+        break;
+      case 'startDate':
+      case 'endDate':
+        this.filterByDate(filter);
+        break;
+    }
+  }
+
+  filterByNumber(filter: ISortFilter): void{
+    if (filter.asc) {
+      this.rooms = this.rooms.sort((a, b) => {
+        if (a[filter.prop] > b[filter.prop]) { return 1; }
+        return -1;
+      });
+      return;
+    }
+    this.rooms = this.rooms.sort((a, b) => {
+      if (a[filter.prop] > b[filter.prop]) { return -1; }
+      return 1;
+    });
+  }
+
+  filterByDate(filter: ISortFilter): void {
+    if (filter.asc) {
+      this.rooms = this.rooms.sort((a, b) => {
+        if (a[filter.prop].getTime() > b[filter.prop].getTime()) { return 1; }
+        return -1;
+      });
+      return;
+    }
+    this.rooms = this.rooms.sort((a, b) => {
+      if (a[filter.prop].getTime() > b[filter.prop].getTime()) { return -1; }
+      return 1;
+    });
+  }
+
+  /*roomInfosAux: RoomInfo[] = [];*/
+  /*filters = ['Adultos', 'Niños', 'Cunas', 'Habitación', 'Entrada', 'Salida'];*/
+  /*currentFilter = '';
+  filterType = true;*/
+
+  /*chooseFilter(filter: string): void {
     this.valor = filter;
   }
 
@@ -54,27 +116,13 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
     this.filterData(filter, clickedComponent);
   }
 
-  /*filter(filter: string, property: string, direction: string): void {
-    if (direction === 'asc') {
-      this.roomInfosAux.sort((a, b) => {
-        if (a['property'] < b['property']) { return 1; }
-        else { return -1; }
-      });
-      return;
-    }
-    this.roomInfosAux.sort((a, b) => {
-      if (a['property'] < b['property']) { return -1; }
-      else { return 1; }
-    });
-  }*/
-
   filterData(filtro: string, clickedComponent: string): void {
     const rooms = this.roomInfosAux;
     const valor = filtro.toLocaleLowerCase();
 
-    /*Miro desde que elemento quiero filtrar el array
+    /!*Miro desde que elemento quiero filtrar el array
     * (label, flecha asc o flecha desc).
-    * Dependiendo del elemento hago una cosa u otra */
+    * Dependiendo del elemento hago una cosa u otra *!/
     this.checkValue(this.currentFilter.toLocaleLowerCase(), valor, clickedComponent);
 
     // Filtro el array
@@ -147,9 +195,9 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
 
       break;
     }
-  }
+  }*/
 
-  solveFilter(valor: string): void {
+  /*solveFilter(valor: string): void {
     if (this.filterType === true) {
       for (let i = 0; i < this.filters.length; i++) {
         const quitarNegrita = document.getElementsByClassName('desc')[i];
@@ -193,12 +241,12 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
     } else if (clickedComponent === 'flecha-desc') {
       this.filterType = false;
     } else if (clickedComponent === 'label') {
-      /*
+      /!*
       * SI CLICO EN LA LABEL:
       * Si NO es la primera vez que uso el filtro:
       * Si el filtro es el mismo que la ultima vez y está ordenada de forma ascendente,
       * ordénala de forma descendente y viceversa
-      */
+      *!/
       if (filterUsed !== '') {
         if (filterUsed === filterValue) {
           if (this.filterType === true) {
@@ -210,11 +258,11 @@ export class FiltrosordenComponent implements OnInit, OnDestroy {
           this.filterType = true;
         }
       }
-      /*
+      /!*
       * No hace falta hacer un else por que si clicas en la label por primera vez
       * se sobreentiende que quieres hacerlo de forma ascendente
-      */
+      *!/
     }
-  }
+  }*/
 
 }

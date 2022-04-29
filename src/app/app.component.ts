@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HouseKeeping, RoomInfo } from './room-info';
-import {ArrayFiltroService} from './services/array-filtro.service';
+import * as moment from 'moment';
+
 
 
 @Component({
@@ -8,105 +9,118 @@ import {ArrayFiltroService} from './services/array-filtro.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
+export class AppComponent {
+  isLoading = true;
   title = 'Gobernanta';
-
-  today = new Date();
-  tomorrow =  new Date();
-  habitaciones: RoomInfo[] = [
+  momentDate = moment(new Date());
+  /*today = new Date();
+  tomorrow =  new Date();*/
+  roomsAux: RoomInfo[];
+  rooms: RoomInfo[] = [
     {
       name: '100',
       contactName: 'Pepe, Gema',
       adults: 2,
       kids: 1,
       babies: 0,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.toDate(),
+      endDate: this.momentDate.add(2, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
-      blocked: false
+      blocked: false,
+      cradles: 2,
     }, {
       name: '101',
       contactName: 'Juan',
       adults: 1,
       kids: 2,
       babies: 2,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.add(4, 'days').toDate(),
+      endDate: this.momentDate.add(6, 'days').toDate(),
       houseKeeping: HouseKeeping.Clean,
-      blocked: true
+      blocked: true,
+      cradles: 1,
     }, {
       name: '102',
       contactName: '',
       adults: 2,
       kids: 1,
       babies: 0,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.add(1, 'days').toDate(),
+      endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.pendingReview,
-      blocked: false
+      blocked: false,
+      cradles: 1,
     }, {
       name: '103',
       contactName: 'Manuel',
       adults: 2,
       kids: 0,
       babies: 0,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.add(6, 'days').toDate(),
+      endDate: this.momentDate.add(8, 'days').toDate(),
       houseKeeping: HouseKeeping.Clean,
-      blocked: false
+      blocked: false,
+      cradles: 1,
     }, {
       name: '104',
       contactName: '',
       adults: 1,
       kids: 0,
       babies: 1,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.add(2, 'days').toDate(),
+      endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
-      blocked: false
+      blocked: false,
+      cradles: 1,
     }, {
       name: '105',
       contactName: 'Sergio',
       adults: 1,
       kids: 2,
       babies: 1,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.add(2, 'days').toDate(),
+      endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
-      blocked: true
+      blocked: true,
+      cradles: 1,
     }, {
       name: '200',
       contactName: 'Mario',
       adults: 2,
       kids: 1,
       babies: 0,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.add(2, 'days').toDate(),
+      endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.pendingReview,
-      blocked: false
+      blocked: false,
+      cradles: 1,
     }, {
       name: '201',
       contactName: '',
       adults: 1,
       kids: 0,
       babies: 0,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.add(2, 'days').toDate(),
+      endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
-      blocked: true
+      blocked: true,
+      cradles: 1,
     }, {
       name: '202',
       contactName: 'Manolo',
       adults: 2,
       kids: 2,
       babies: 2,
-      startDate: this.today,
-      endDate: this.tomorrow,
+      startDate: this.momentDate.add(2, 'days').toDate(),
+      endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Clean,
-      blocked: false
+      blocked: false,
+      cradles: 0,
     }];
 
-    constructor(private arrayFiltro: ArrayFiltroService) {
-      this.tomorrow.setDate(this.today.getDate() + 1);
+    constructor() {
+      this.roomsAux = [...this.rooms];
+     /* this.tomorrow.setDate(this.today.getDate() + 1);*/
+      this.isLoading = false;
     }
 }
