@@ -4,7 +4,6 @@ export class RoomInfo {
   adults!: number;
   kids!: number;
   babies!: number;
-  cradles!: number;
   startDate!: Date;
   endDate!: Date;
   houseKeeping!: HouseKeeping;

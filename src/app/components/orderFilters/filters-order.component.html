@@ -7,14 +7,17 @@
   </div>
 </section>-->
 <ng-container *ngIf="!isLoading">
-  <div class="d-flex ml-3">
-    <div class="ml-2" *ngFor="let filter of filters" (click)="setFilterHandler(filter)" role="button">
-      <div class="d-flex align-items-end align-content-end"
+  <div class="row ml-3" style="height: 20px">
+    <div class="ml-2 filter-hover" *ngFor="let filter of filters" (click)="setFilterHandler(filter)" role="button">
+      <div class="d-flex align-items-center align-content-center"
            [ngStyle]="{'color': filterHandler.indexOf(filter) !== -1 ? 'red' : ''}">
         <span>{{ filter.label }}</span>
         <app-flechas *ngIf="filterHandler.indexOf(filter) !== -1; else noFilter" [isAsc]="filter.asc"></app-flechas>
       </div>
     </div>
+    <mat-icon class="ml-3" matTooltip="Limpiar Filtro" [style.color]="'red'" *ngIf="filterHandler.length > 0"
+              (click)="filterHandler = []" role="button">cancel
+    </mat-icon>
   </div>
 </ng-container>
 

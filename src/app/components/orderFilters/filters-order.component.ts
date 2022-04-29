@@ -19,7 +19,7 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
   subscription: Subscription[] = [];
   filters: ISortFilter[] = [
     { id: '0', prop: 'adults', label: 'Adultos', asc: false }, { id: '1', prop: 'kids', label: 'Niños', asc: false },
-    { id: '2', prop: 'cradles' , label: 'Cunas', asc: false }, { id: '3', prop: 'name', label: 'Habitación', asc: false },
+    { id: '2', prop: 'babies' , label: 'Cunas', asc: false }, { id: '3', prop: 'name', label: 'Habitación', asc: false },
     { id: '4', prop: 'startDate', label: 'Entrada', asc: false }, { id: '5', prop: 'endDate', label: 'Slida', asc: false }
   ];
   filterHandler: ISortFilter[] = [];
@@ -52,7 +52,7 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
     switch (filter.prop) {
       case 'adults':
       case 'kids':
-      case 'cradles':
+      case 'babies':
       case 'name':
         this.filterByNumber(filter);
         break;

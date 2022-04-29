@@ -7,7 +7,7 @@ import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 })
 export class FlechasComponent implements OnInit {
   @Input() isAsc!: boolean;
-  @Output() condition = new EventEmitter<boolean>();
+  /*@Output() condition = new EventEmitter<boolean>();*/
 
   constructor() {}
 

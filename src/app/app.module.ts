@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { AppComponent } from './app.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AppComponent } from './app.component';
     MatPaginatorModule,
     MatIconModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

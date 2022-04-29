@@ -20,25 +20,23 @@ export class AppComponent {
     {
       name: '100',
       contactName: 'Pepe, Gema',
-      adults: 2,
+      adults: 4,
       kids: 1,
       babies: 0,
       startDate: this.momentDate.toDate(),
       endDate: this.momentDate.add(2, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
       blocked: false,
-      cradles: 2,
     }, {
       name: '101',
       contactName: 'Juan',
-      adults: 1,
+      adults: 3,
       kids: 2,
       babies: 2,
       startDate: this.momentDate.add(4, 'days').toDate(),
       endDate: this.momentDate.add(6, 'days').toDate(),
       houseKeeping: HouseKeeping.Clean,
       blocked: true,
-      cradles: 1,
     }, {
       name: '102',
       contactName: '',
@@ -49,7 +47,6 @@ export class AppComponent {
       endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.pendingReview,
       blocked: false,
-      cradles: 1,
     }, {
       name: '103',
       contactName: 'Manuel',
@@ -60,7 +57,6 @@ export class AppComponent {
       endDate: this.momentDate.add(8, 'days').toDate(),
       houseKeeping: HouseKeeping.Clean,
       blocked: false,
-      cradles: 1,
     }, {
       name: '104',
       contactName: '',
@@ -71,7 +67,6 @@ export class AppComponent {
       endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
       blocked: false,
-      cradles: 1,
     }, {
       name: '105',
       contactName: 'Sergio',
@@ -82,7 +77,6 @@ export class AppComponent {
       endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
       blocked: true,
-      cradles: 1,
     }, {
       name: '200',
       contactName: 'Mario',
@@ -93,7 +87,6 @@ export class AppComponent {
       endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.pendingReview,
       blocked: false,
-      cradles: 1,
     }, {
       name: '201',
       contactName: '',
@@ -104,7 +97,6 @@ export class AppComponent {
       endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
       blocked: true,
-      cradles: 1,
     }, {
       name: '202',
       contactName: 'Manolo',
@@ -115,7 +107,6 @@ export class AppComponent {
       endDate: this.momentDate.add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Clean,
       blocked: false,
-      cradles: 0,
     }];
 
     constructor() {
