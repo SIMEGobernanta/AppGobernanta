@@ -103,8 +103,8 @@ export class AppComponent {
       adults: 2,
       kids: 2,
       babies: 2,
-      startDate: this.momentDate.add(2, 'days').toDate(),
-      endDate: this.momentDate.add(3, 'days').toDate(),
+      startDate: moment(new Date()).toDate(),
+      endDate: moment(new Date()).add(3, 'days').toDate(),
       houseKeeping: HouseKeeping.Clean,
       blocked: false,
     }];

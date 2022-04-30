@@ -49,21 +49,6 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
 
   applyFilter(): void {
     const filter = this.filterHandler[0];
-    switch (filter.prop) {
-      case 'adults':
-      case 'kids':
-      case 'babies':
-      case 'name':
-        this.filterByNumber(filter);
-        break;
-      case 'startDate':
-      case 'endDate':
-        this.filterByDate(filter);
-        break;
-    }
-  }
-
-  filterByNumber(filter: ISortFilter): void{
     if (filter.asc) {
       this.rooms = this.rooms.sort((a, b) => {
         if (a[filter.prop] > b[filter.prop]) { return 1; }
@@ -73,20 +58,6 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
     }
     this.rooms = this.rooms.sort((a, b) => {
       if (a[filter.prop] > b[filter.prop]) { return -1; }
-      return 1;
-    });
-  }
-
-  filterByDate(filter: ISortFilter): void {
-    if (filter.asc) {
-      this.rooms = this.rooms.sort((a, b) => {
-        if (a[filter.prop].getTime() > b[filter.prop].getTime()) { return 1; }
-        return -1;
-      });
-      return;
-    }
-    this.rooms = this.rooms.sort((a, b) => {
-      if (a[filter.prop].getTime() > b[filter.prop].getTime()) { return -1; }
       return 1;
     });
   }
