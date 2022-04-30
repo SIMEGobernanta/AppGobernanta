@@ -62,6 +62,11 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
     });
   }
 
+  resetFilters(): void {
+    this.rooms = this.rooms.sort((a, b) => a.name - b.name);
+    this.filterHandler = [];
+  }
+
   /*roomInfosAux: RoomInfo[] = [];*/
   /*filters = ['Adultos', 'Niños', 'Cunas', 'Habitación', 'Entrada', 'Salida'];*/
   /*currentFilter = '';

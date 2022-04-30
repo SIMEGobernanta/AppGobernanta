@@ -16,7 +16,7 @@
       </div>
     </div>
     <mat-icon class="ml-3" matTooltip="Limpiar Filtro" [style.color]="'red'" *ngIf="filterHandler.length > 0"
-              (click)="filterHandler = []" role="button">cancel
+              (click)="resetFilters()" role="button">cancel
     </mat-icon>
   </div>
 </ng-container>
