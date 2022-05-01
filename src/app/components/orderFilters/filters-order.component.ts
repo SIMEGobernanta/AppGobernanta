@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import {RoomInfo} from '../../room-info';
 
 interface ISortFilter {
-  id: string;
   prop: string;
   label: string;
   asc: boolean;
@@ -18,9 +18,9 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
   isLoading = true;
   subscription: Subscription[] = [];
   filters: ISortFilter[] = [
-    { id: '0', prop: 'adults', label: 'Adultos', asc: false }, { id: '1', prop: 'kids', label: 'Niños', asc: false },
-    { id: '2', prop: 'babies' , label: 'Cunas', asc: false }, { id: '3', prop: 'name', label: 'Habitación', asc: false },
-    { id: '4', prop: 'startDate', label: 'Entrada', asc: false }, { id: '5', prop: 'endDate', label: 'Slida', asc: false }
+    { prop: 'adults', label: 'Adultos', asc: false }, { prop: 'kids', label: 'Niños', asc: false },
+    { prop: 'babies' , label: 'Cunas', asc: false }, { prop: 'name', label: 'Habitación', asc: false },
+    { prop: 'startDate', label: 'Entrada', asc: false }, { prop: 'endDate', label: 'Slida', asc: false }
   ];
   filterHandler: ISortFilter[] = [];
 
@@ -37,6 +37,7 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
   setFilterHandler(filter: ISortFilter): void {
     const index = this.filterHandler.indexOf(filter);
     if (index === -1) {
+      this.resetFilter();
       this.filterHandler = [];
       filter.asc = !filter.asc;
       this.filterHandler.push(filter);
@@ -45,6 +46,12 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
     }
     this.filterHandler[index].asc = !this.filterHandler[index].asc;
     this.applyFilter();
+  }
+
+  resetFilter(): void {
+    if (this.filterHandler.length) {
+      this.filterHandler[0].asc = false;
+    }
   }
 
   applyFilter(): void {
@@ -64,6 +71,7 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
 
   resetFilters(): void {
     this.rooms = this.rooms.sort((a, b) => a.name - b.name);
+    this.filters.forEach(filter => filter.asc = false);
     this.filterHandler = [];
   }
 

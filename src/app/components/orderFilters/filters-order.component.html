@@ -7,8 +7,8 @@
   </div>
 </section>-->
 <ng-container *ngIf="!isLoading">
-  <div class="row ml-3" style="height: 20px">
-    <div class="ml-2 filter-hover" *ngFor="let filter of filters" (click)="setFilterHandler(filter)" role="button">
+  <div class="row ml-3 mb-3" style="height: 20px">
+    <div class="ml-2 filter" *ngFor="let filter of filters" (click)="setFilterHandler(filter)" role="button">
       <div class="d-flex align-items-center align-content-center"
            [ngStyle]="{'color': filterHandler.indexOf(filter) !== -1 ? 'red' : ''}">
         <span>{{ filter.label }}</span>
