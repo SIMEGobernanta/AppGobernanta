@@ -13,10 +13,9 @@ interface ISortFilter {
   templateUrl: './filters-order.component.html',
   styleUrls: ['./filters-order.component.css']
 })
-export class FiltersOrderComponent implements OnInit, OnDestroy {
-  @Input() rooms!: any[];
+export class FiltersOrderComponent implements OnInit {
+  @Input() rooms!: RoomInfo[];
   isLoading = true;
-  subscription: Subscription[] = [];
   filters: ISortFilter[] = [
     { prop: 'adults', label: 'Adultos', asc: false }, { prop: 'kids', label: 'Niños', asc: false },
     { prop: 'babies' , label: 'Cunas', asc: false }, { prop: 'name', label: 'Habitación', asc: false },
@@ -28,10 +27,6 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isLoading = false;
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.forEach( subscription => subscription.unsubscribe());
   }
 
   setFilterHandler(filter: ISortFilter): void {
@@ -58,19 +53,19 @@ export class FiltersOrderComponent implements OnInit, OnDestroy {
     const filter = this.filterHandler[0];
     if (filter.asc) {
       this.rooms = this.rooms.sort((a, b) => {
-        if (a[filter.prop] > b[filter.prop]) { return 1; }
+        if (a[filter.prop as keyof RoomInfo] > b[filter.prop as keyof RoomInfo]) { return 1; }
         return -1;
       });
       return;
     }
     this.rooms = this.rooms.sort((a, b) => {
-      if (a[filter.prop] > b[filter.prop]) { return -1; }
+      if (a[filter.prop as keyof RoomInfo] > b[filter.prop as keyof RoomInfo]) { return -1; }
       return 1;
     });
   }
 
   resetFilters(): void {
-    this.rooms = this.rooms.sort((a, b) => a.name - b.name);
+    this.rooms = this.rooms.sort((a: any, b: any) => a.name - b.name);
     this.filters.forEach(filter => filter.asc = false);
     this.filterHandler = [];
   }
