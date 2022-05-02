@@ -4,8 +4,8 @@
       <mat-form-field appearance="fill" style="width: 250px;">
         <mat-label> Introduzca un rango de fechas </mat-label>
         <mat-date-range-input [rangePicker]="picker" [min]="minDate">
-          <input matStartDate placeholder="Fecha Entrada" >
-          <input matEndDate placeholder="Fecha Salida">
+          <input #dateRangeStart matStartDate placeholder="Fecha Entrada">
+          <input #dateRangeEnd matEndDate placeholder="Fecha Salida">
         </mat-date-range-input>
         <mat-hint> DD/MM/YYYY - DD/MM/YYYY </mat-hint>
         <mat-datepicker-toggle MatSuffix [for]="picker" style="position: absolute; top:-17px; left: 200px"></mat-datepicker-toggle>
@@ -19,7 +19,7 @@
       <mat-form-field appearance="fill">
         <mat-label> Seleccione un estado </mat-label>
         <mat-select>
-          <mat-option *ngFor="let estado of houseKeeping | keyvalue" [value]="estado.value">
+          <mat-option *ngFor="let estado of houseKeeping | keyvalue"[value]="estado.value">
             {{ estado.value }}
           </mat-option>
         </mat-select>
@@ -29,7 +29,7 @@
 
   <div class="width-custom pl-3 d-inline m-auto custom-margin">
     <section class="w-25 d-inline">
-      <mat-checkbox class="bloqueadas" (change)="filtrarBloqueadas($event)"> Solo bloqueadas </mat-checkbox>
+      <mat-checkbox class="bloqueadas" (change)="filterBlocked($event.checked)"> Solo bloqueadas </mat-checkbox>
     </section>
   </div>
 </form>

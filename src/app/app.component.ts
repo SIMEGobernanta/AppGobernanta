@@ -2,19 +2,16 @@ import { Component } from '@angular/core';
 import { HouseKeeping, RoomInfo } from './room-info';
 import * as moment from 'moment';
 
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   isLoading = true;
   title = 'Gobernanta';
   momentDate = moment(new Date());
-  /*today = new Date();
-  tomorrow =  new Date();*/
   roomsAux: RoomInfo[];
   rooms: RoomInfo[] = [
     {
@@ -95,10 +92,40 @@ export class AppComponent {
       babies: 0,
       startDate: this.momentDate.add(2, 'days').toDate(),
       endDate: this.momentDate.add(3, 'days').toDate(),
+      houseKeeping: HouseKeeping.Clean,
+      blocked: false,
+    }, {
+      name: '202',
+      contactName: 'Manolo',
+      adults: 2,
+      kids: 2,
+      babies: 2,
+      startDate: moment(new Date()).toDate(),
+      endDate: moment(new Date()).add(3, 'days').toDate(),
+      houseKeeping: HouseKeeping.Dirty,
+      blocked: false,
+    }, {
+      name: '203',
+      contactName: '',
+      adults: 2,
+      kids: 0,
+      babies: 0,
+      startDate: moment(new Date()).toDate(),
+      endDate: moment(new Date()).add(7, 'days').toDate(),
       houseKeeping: HouseKeeping.Dirty,
       blocked: true,
     }, {
-      name: '202',
+      name: '204',
+      contactName: 'Manolo',
+      adults: 2,
+      kids: 2,
+      babies: 2,
+      startDate: moment(new Date()).toDate(),
+      endDate: moment(new Date()).add(2, 'days').toDate(),
+      houseKeeping: HouseKeeping.pendingReview,
+      blocked: false,
+    }, {
+      name: '205',
       contactName: 'Manolo',
       adults: 2,
       kids: 2,
@@ -111,7 +138,6 @@ export class AppComponent {
 
     constructor() {
       this.roomsAux = [...this.rooms];
-     /* this.tomorrow.setDate(this.today.getDate() + 1);*/
       this.isLoading = false;
     }
 }

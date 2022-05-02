@@ -32,7 +32,7 @@
   <div class="float-right pl-3 col-sm-12 col-md-2 w-sm-50 float-custom">
     <mat-form-field appearance="fill">
       <mat-label> Buscar: </mat-label>
-      <input matInput #value (input)="search(value)">
+      <input matInput #value (input)="search(value.value.toString())">
     </mat-form-field>
   </div>
 </form>

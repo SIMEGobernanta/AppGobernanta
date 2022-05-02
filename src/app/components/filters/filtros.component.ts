@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HouseKeeping, RoomInfo } from 'src/app/room-info';
-import {ArrayFiltroService} from '../../services/array-filtro.service';
+import { ArrayFiltroService } from '../../services/array-filtro.service';
 
 @Component({
   selector: 'app-filtros',
@@ -9,38 +9,31 @@ import {ArrayFiltroService} from '../../services/array-filtro.service';
   styleUrls: ['./filtros.component.css']
 })
 export class FiltrosComponent implements OnInit, OnDestroy {
-
   @Input() rooms!: RoomInfo[];
 
+  roomInfoAux: RoomInfo[] = [];
+  subscriptions: Subscription[] = [];
   houseKeeping = HouseKeeping;
-  roomInfosAux: RoomInfo[] = [];
-  subscription: Subscription[] = [];
+  isLoading = true;
 
   constructor(private arrayFilter: ArrayFiltroService) { }
 
   ngOnInit(): void {
-    this.roomInfosAux = JSON.parse(JSON.stringify(this.rooms));
-    this.subscription.push(
-      this.arrayFilter.sendArray.subscribe((resp: RoomInfo[]) => {
-        this.roomInfosAux = resp;
+    this.isLoading = false;
+
+    this.roomInfoAux = [...this.rooms];
+    this.subscriptions.push(
+      this.arrayFilter.sendArray.subscribe((resp:RoomInfo[]) => {
+        this.roomInfoAux = resp;
       })
     );
   }
 
-  ngOnDestroy(): void {
-    this.subscription.forEach(subscription => subscription.unsubscribe());
+  ngOnDestroy() : void {
+    this.subscriptions.forEach(subcription => subcription.unsubscribe);
   }
 
-  search(value: HTMLInputElement): void {
-
-    const inputValue = value.value;
-    let aux: RoomInfo[];
-
-    if (inputValue) {
-      aux = this.roomInfosAux.filter(room => room.name.includes(inputValue));
-    } else {
-      aux = this.rooms;
-    }
-    this.arrayFilter.sendArray.emit(aux);
+  search(value: string): void {
+    this.rooms = this.roomInfoAux.filter(room => room.name.includes(value));
   }
 }

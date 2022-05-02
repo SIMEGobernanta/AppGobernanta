@@ -3,7 +3,7 @@ import { HouseKeeping, RoomInfo } from '../../room-info';
 import { MatDialog } from '@angular/material/dialog';
 import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { Subscription } from 'rxjs';
-import {ArrayFiltroService} from '../../services/array-filtro.service';
+import { ArrayFiltroService } from '../../services/array-filtro.service';
 
 @Component({
   selector: 'app-principal',
@@ -14,7 +14,6 @@ import {ArrayFiltroService} from '../../services/array-filtro.service';
 export class PrincipalComponent implements OnInit, OnDestroy {
 
   @Input() rooms!: RoomInfo[];
-  @Input() auxRooms: RoomInfo[] = [];
   subscriptions: Subscription[] = [];
 
   constructor(public dialog: MatDialog, private arrayFiltro: ArrayFiltroService) {
@@ -22,12 +21,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    /*this.auxRooms = JSON.parse(JSON.stringify(this.rooms));*/
-   /* this.subscriptions.push(
-      this.arrayFiltro.sendArray.subscribe((resp: RoomInfo[]) => {
-      this.auxRooms = resp;
-      })
-    );*/
+
   }
 
   ngOnDestroy(): void {

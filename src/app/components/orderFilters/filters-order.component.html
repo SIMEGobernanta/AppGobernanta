@@ -1,11 +1,3 @@
-<!--<section class="pl-5">
-  <div class="margin-top-custom" style="cursor:pointer" *ngFor="let filtro of filters" (click)="chooseFilter(filtro)">
-    <span (click)="filterDataList(filtro)"> {{filtro}} </span>
-
-    <app-flechas (condition)="getCondition($event, filtro)" style="display: inline-flex; flex-direction: column; flex-wrap: wrap; font-size: 0.8em;"></app-flechas>
-    &nbsp; &nbsp;
-  </div>
-</section>-->
 <ng-container *ngIf="!isLoading">
   <div class="row ml-3 mb-3" style="height: 20px">
     <div class="ml-2 filter" *ngFor="let filter of filters" (click)="setFilterHandler(filter)" role="button">
