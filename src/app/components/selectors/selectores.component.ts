@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Subscription } from 'rxjs';
 import { HouseKeeping, RoomInfo } from 'src/app/room-info';
-import { ArrayFiltroService } from 'src/app/servicios/array-filtro.service';
+import {ArrayFiltroService} from '../../services/array-filtro.service';
 
 @Component({
   selector: 'app-selectores',
@@ -12,40 +12,40 @@ import { ArrayFiltroService } from 'src/app/servicios/array-filtro.service';
 export class SelectoresComponent implements OnInit, OnDestroy {
 
 
-  @Input() habitaciones!:RoomInfo[];
+  @Input() rooms!: RoomInfo[];
 
-  aux: RoomInfo[] = [];
-  subscription: Subscription[] = [];
-  estados = HouseKeeping;
+  roomInfosAux: RoomInfo[] = [];
+  subscriptions: Subscription[] = [];
+  houseKeeping = HouseKeeping;
   minDate!: Date;
 
-  constructor(private arrayFiltro:ArrayFiltroService) {
+  constructor(private arrayFilter: ArrayFiltroService) {
 
   }
 
   ngOnInit(): void {
     this.minDate = new Date();
-    this.aux = JSON.parse(JSON.stringify(this.habitaciones));
-    this.subscription.push(
-      this.arrayFiltro.sendArray.subscribe((resp:RoomInfo[]) => {
-        this.aux = resp;
+    this.roomInfosAux = JSON.parse(JSON.stringify(this.rooms));
+    this.subscriptions.push(
+      this.arrayFilter.sendArray.subscribe((resp:RoomInfo[]) => {
+        this.roomInfosAux = resp;
       })
     );
   }
 
   ngOnDestroy(): void {
-    this.subscription.forEach( subscription => subscription.unsubscribe());
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   filtrarBloqueadas(event:MatCheckboxChange) {
     let aux:RoomInfo[] = [];
 
     if (event.checked) {
-      aux = this.aux.filter(habitacion => habitacion.blocked);
+      aux = this.roomInfosAux.filter(habitacion => habitacion.blocked);
     } else {
-      aux = this.habitaciones;
+      aux = this.rooms;
     }
-    this.arrayFiltro.sendArray.emit(aux);
+    this.arrayFilter.sendArray.emit(aux);
   }
 
 }

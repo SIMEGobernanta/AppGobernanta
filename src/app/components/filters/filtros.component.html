@@ -13,7 +13,7 @@
       <mat-form-field appearance="fill">
         <mat-label> Estados </mat-label>
         <mat-select>
-          <mat-option *ngFor="let estado of estados | keyvalue" [value]="estado.value">
+          <mat-option *ngFor="let estado of houseKeeping | keyvalue" [value]="estado.value">
             {{ estado.value }}
           </mat-option>
         </mat-select>
@@ -32,7 +32,7 @@
   <div class="float-right pl-3 col-sm-12 col-md-2 w-sm-50 float-custom">
     <mat-form-field appearance="fill">
       <mat-label> Buscar: </mat-label>
-      <input matInput #value (input)="busqueda(value)">
+      <input matInput #value (input)="search(value)">
     </mat-form-field>
   </div>
 </form>

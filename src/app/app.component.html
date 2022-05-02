@@ -1,17 +1,17 @@
 <header>
-  <app-navbar> </app-navbar>
+  <app-navbar></app-navbar>
 </header>
 
-<main class="mt-3">
-  <app-selectores [habitaciones]="habitaciones"> </app-selectores>
+<main class="mt-3" *ngIf="!isLoading">
+  <app-selectores [rooms]="rooms"> </app-selectores>
 
-  <app-filtros [habitaciones]="habitaciones"> </app-filtros>
+  <app-filtros [rooms]="rooms"> </app-filtros>
 
-  <app-filtrosorden [habitaciones]="habitaciones"> </app-filtrosorden>
+  <app-filtrosorden [rooms]="roomsAux"> </app-filtrosorden>
 
-  <app-principal [habitaciones]="habitaciones"> </app-principal>
+  <app-principal [rooms]="roomsAux"> </app-principal>
 
-  <app-paginacion> </app-paginacion>
+  <app-paginacion></app-paginacion>
 
   <app-leyenda> </app-leyenda>
 </main>

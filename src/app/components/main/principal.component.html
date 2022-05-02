@@ -1,14 +1,14 @@
 <!-- ngcontainer -->
-<ng-container *ngIf="aux.length != 0; else noHabs">
+<ng-container *ngIf="rooms.length != 0; else noHabs">
   <div class="container-xxl mx-5">
     <div class="row">
-      <div class="fila col-12 col-md-6 col-lg-3 col-xl-2 my-2 d-inline-flex p-0" *ngFor="let habitacion of aux" (dblclick)="openDialog(habitacion)">
+      <div class="fila col-12 col-md-6 col-lg-3 col-xl-2 my-2 d-inline-flex p-0" *ngFor="let habitacion of rooms" (dblclick)="openDialog(habitacion)">
         <div class="w-100 d-inline-flex h-100 m-2 borde-custom">
           <div class="w-25 personas h-100" style="background-color: #CCC;">
             <!-- *ngIf="!habitacion.blocked" ?? -->
             <div class="my-3">
               <mat-icon> directions_walk </mat-icon> <span class="badge badge-pill badge-primary"> {{habitacion.adults}} </span> <br>
-              <mat-icon> school </mat-icon> <span class="badge badge-pill badge-primary"> {{habitacion.kids}} </span> <br>
+              <mat-icon> child_care </mat-icon> <span class="badge badge-pill badge-primary"> {{habitacion.kids}} </span> <br>
               <mat-icon> child_friendly </mat-icon> <span class="badge badge-pill badge-primary"> {{habitacion.babies}} </span>
             </div>
           </div>
