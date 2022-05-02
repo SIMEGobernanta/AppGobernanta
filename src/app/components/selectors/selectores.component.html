@@ -4,8 +4,8 @@
       <mat-form-field appearance="fill" style="width: 250px;">
         <mat-label> Introduzca un rango de fechas </mat-label>
         <mat-date-range-input [rangePicker]="picker" [min]="minDate">
-          <input #dateRangeStart matStartDate placeholder="Fecha Entrada">
-          <input #dateRangeEnd matEndDate placeholder="Fecha Salida">
+          <input #dateRangeStart matStartDate placeholder="Fecha Entrada" readonly>
+          <input #dateRangeEnd matEndDate placeholder="Fecha Salida" readonly>
         </mat-date-range-input>
         <mat-hint> DD/MM/YYYY - DD/MM/YYYY </mat-hint>
         <mat-datepicker-toggle MatSuffix [for]="picker" style="position: absolute; top:-17px; left: 200px"></mat-datepicker-toggle>

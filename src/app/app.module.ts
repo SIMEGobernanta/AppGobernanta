@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//Components
+import { AppComponent } from './app.component';
 import { FiltrosComponent } from './components/filters/filtros.component';
 import { LeyendaComponent } from './components/legend/leyenda.component';
 import { CloseDialogComponent } from './components/main/close-dialog/close-dialog.component';
@@ -23,8 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
-import { AppComponent } from './app.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [

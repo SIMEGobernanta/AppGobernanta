@@ -10,7 +10,6 @@ import { ArrayFiltroService } from '../../services/array-filtro.service';
 })
 export class FiltrosComponent implements OnInit, OnDestroy {
   @Input() rooms!: RoomInfo[];
-
   roomInfoAux: RoomInfo[] = [];
   subscriptions: Subscription[] = [];
   houseKeeping = HouseKeeping;
