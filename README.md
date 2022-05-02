@@ -25,3 +25,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Problemas a arreglar
+
+- Los filtros de orden no filtran bien las fechas de entrada ni de salida
+- Los filtros de arriba y el de búsqueda no actualizan visualmente la página
