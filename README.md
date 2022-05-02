@@ -29,5 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Problemas a arreglar
 
-- Los filtros de orden no filtran bien las fechas de entrada ni de salida
 - Los filtros de arriba y el de búsqueda no actualizan visualmente la página
