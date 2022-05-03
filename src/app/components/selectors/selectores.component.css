@@ -46,6 +46,12 @@
   }
 }
 
+@media screen and (min-width: 1919px) {
+  .width-custom {
+    width: 14.2% !important;
+  }
+}
+
 @media screen and (min-width: 2530px) {
   .width-custom {
     width: 10.5% !important;

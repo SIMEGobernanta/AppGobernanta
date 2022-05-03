@@ -14,11 +14,11 @@
 }
 
 .sucia {
-  background-color: yellow;
+  background-color: rgb(250, 250, 119);
 }
 
 .revisada {
-  background-color: green;
+  background-color: rgb(82, 178, 82);
 }
 
 .limpia {
@@ -26,8 +26,16 @@
 }
 
 .bloqueada {
-  background-color: red !important;
+  background-color: rgb(231, 94, 94) !important;
 }
+
+@media screen and (min-width: 1919px) {
+  .col-xxl-1 {
+    max-width: 12.5% !important;
+    flex: 0 0 12.5% !important;
+  }
+}
+
 
 @media screen and (min-width: 2530px) {
   .col-xxl-1 {

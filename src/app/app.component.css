@@ -35,6 +35,12 @@
   }
 }
 
+@media screen and (min-width:1919px) {
+  .w-20 {
+    margin-right: 2.2% !important;
+  }
+}
+
 @media screen and (min-width:2559px) {
   .w-20 {
     margin-right: 1.6% !important;
