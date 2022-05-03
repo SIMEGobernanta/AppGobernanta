@@ -12,6 +12,7 @@ import { FiltersOrderComponent } from './components/orderFilters/filters-order.c
 import { FlechasComponent } from './components/orderFilters/flechas/flechas.component';
 import { PaginacionComponent } from './components/paginator/paginacion.component';
 import { SelectoresComponent } from './components/selectors/selectores.component';
+import { SearchComponent } from './components/search/search.component';
 
 // Material
 import { MatDatepickerModule } from '@angular/material/datepicker'
@@ -26,7 +27,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
