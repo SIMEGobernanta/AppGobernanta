@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RoomInfo } from 'src/app/room-info';
 
 @Component({
   selector: 'app-paginacion',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./paginacion.component.css']
 })
 export class PaginacionComponent implements OnInit {
+  @Input() rooms!: RoomInfo[];
 
   constructor() { }
 

@@ -1,0 +1,8 @@
+<ng-container *ngIf="!isLoading">
+  <div class="pb-3" style="width:80%; display:flex; justify-content:flex-end">
+    <mat-form-field appearance="fill">
+      <mat-label> Buscar: </mat-label>
+      <input matInput #value (input)="search(value.value.toString())">
+    </mat-form-field>
+  </div>
+</ng-container>

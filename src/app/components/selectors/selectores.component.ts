@@ -29,6 +29,7 @@ export const MY_DATE_FORMATS = {
 })
 export class SelectoresComponent implements OnInit {
   @Input() rooms!: RoomInfo[];
+  @Input() roomInfoAux!: RoomInfo[];
   houseKeeping = HouseKeeping;
   minDate!: Date;
 
@@ -41,12 +42,13 @@ export class SelectoresComponent implements OnInit {
   }
 
   filterBlocked(checked:boolean) {
-    let aux:RoomInfo[] = [];
-    if (checked) aux = this.rooms.filter(habitacion => habitacion.blocked);
-    else aux = this.rooms;
-    this.arrayFilter.sendArray.emit(aux);
 
-    console.log(aux);
+    //La función cumple con lo deseado pero no actualiza visualmente el array;
+
+    let aux:RoomInfo[] = [];
+    checked ? aux = this.rooms.filter(room => room.blocked) : aux = this.rooms;
+
+    this.roomInfoAux = [...aux];
   }
 
 
