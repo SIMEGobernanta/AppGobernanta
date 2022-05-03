@@ -1,8 +1,8 @@
 <!-- ngcontainer -->
 <ng-container *ngIf="rooms.length != 0; else noHabs">
-  <div class="container-xxl mx-5">
+  <div class="container-xxl mx-5 pt-5 pt-md-0">
     <div class="row">
-      <div class="fila col-12 col-md-6 col-lg-3 col-xl-2 my-2 d-inline-flex p-0" *ngFor="let habitacion of rooms" (dblclick)="openDialog(habitacion)">
+      <div class="fila col-12 col-md-6 col-lg-3 col-xl-2 col-xxl-1 my-2 d-inline-flex p-0" *ngFor="let habitacion of rooms" (dblclick)="openDialog(habitacion)">
         <div class="w-100 d-inline-flex h-100 m-2 borde-custom">
           <div class="w-25 personas h-100" style="background-color: #CCC;">
             <!-- *ngIf="!habitacion.blocked" ?? -->

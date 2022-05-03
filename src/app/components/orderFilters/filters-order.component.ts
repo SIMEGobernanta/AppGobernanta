@@ -12,6 +12,7 @@ interface ISortFilter {
   templateUrl: './filters-order.component.html',
   styleUrls: ['./filters-order.component.css']
 })
+
 export class FiltersOrderComponent implements OnInit {
   @Input() rooms!: RoomInfo[];
   isLoading = true;

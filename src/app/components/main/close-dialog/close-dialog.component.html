@@ -7,7 +7,7 @@
 </div>
 <div class="m-3"> </div>
 <div class="w-75 m-auto text-center border-black">
-  <p class="pt-2" *ngIf="data.contactName"> {{data.contactName}} </p>
+  <p class="pt-2" *ngIf="data.contactName"> La habitación la ha/han reservado: {{data.contactName}} </p>
   <p class="pt-2" *ngIf="data.blocked"> La habitacion está bloqueada </p>
   <p class="pt-2" *ngIf="!data.blocked"> El estado de la habitación es: {{data.houseKeeping.toLocaleLowerCase()}} </p>
   <p *ngIf="!data.blocked"> <mat-icon style="color:blue">input</mat-icon>  {{data.startDate | date: 'dd-MM-YYYY' }} </p>

@@ -28,3 +28,10 @@
 .bloqueada {
   background-color: red !important;
 }
+
+@media screen and (min-width: 2530px) {
+  .col-xxl-1 {
+    max-width: 8.333335% !important;
+    flex: 0 0 8.333335% !important;
+  }
+}

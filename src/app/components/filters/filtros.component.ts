@@ -10,6 +10,7 @@ import { ArrayFiltroService } from '../../services/array-filtro.service';
 })
 export class FiltrosComponent implements OnInit, OnDestroy {
   @Input() rooms!: RoomInfo[];
+
   roomInfoAux: RoomInfo[] = [];
   subscriptions: Subscription[] = [];
   houseKeeping = HouseKeeping;
@@ -32,7 +33,9 @@ export class FiltrosComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subcription => subcription.unsubscribe);
   }
 
+
   search(value: string): void {
     this.rooms = this.roomInfoAux.filter(room => room.name.includes(value));
+    console.log(this.rooms);
   }
 }
