@@ -1,0 +1,5 @@
+.float-custom {
+  width:80%;
+  display:flex;
+  justify-content:flex-end;
+}

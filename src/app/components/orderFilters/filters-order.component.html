@@ -1,5 +1,5 @@
 <ng-container *ngIf="!isLoading">
-  <div class="row ml-3 mr-0 mb-3" style="height: 20px; width: 80%;">
+  <div class="row ml-3 mr-0 mb-3 custom-size">
     <div class="ml-2 filter" *ngFor="let filter of filters" (click)="setFilterHandler(filter)" role="button">
       <div class="d-flex align-items-center align-content-center"
            [ngStyle]="{'color': filterHandler.indexOf(filter) !== -1 ? 'red' : ''}">
@@ -15,6 +15,6 @@
 
 <ng-template #noFilter>
   <div class="d-flex flex-column">
-    <mat-icon style="font-size: 20px">touch_app</mat-icon>
+    <mat-icon class="custom-font">touch_app</mat-icon>
   </div>
 </ng-template>

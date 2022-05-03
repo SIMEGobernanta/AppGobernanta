@@ -1,20 +1,20 @@
-<form class="d-flex p-4" style="flex-wrap: wrap;">
+<form class="d-flex p-4 flex-wrap">
   <div class="width-custom pl-3 d-inline">
     <section class="d-inline w-25">
-      <mat-form-field appearance="fill" style="width: 250px;">
+      <mat-form-field appearance="fill" class="w-240">
         <mat-label> Introduzca un rango de fechas </mat-label>
         <mat-date-range-input [rangePicker]="picker" [min]="minDate">
           <input #dateRangeStart matStartDate placeholder="Fecha Entrada" readonly>
           <input #dateRangeEnd matEndDate placeholder="Fecha Salida" readonly>
         </mat-date-range-input>
         <mat-hint> DD/MM/YYYY - DD/MM/YYYY </mat-hint>
-        <mat-datepicker-toggle MatSuffix [for]="picker" style="position: absolute; top:-17px; left: 200px"></mat-datepicker-toggle>
+        <mat-datepicker-toggle MatSuffix [for]="picker" class="position-absolute"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
     </section>
   </div>
 
-  <div class="width-custom pl-3 d-inline">
+  <div class="width-custom pl-1 d-inline">
     <section class="d-inline w-25">
       <mat-form-field appearance="fill">
         <mat-label> Seleccione un estado </mat-label>
@@ -27,7 +27,7 @@
     </section>
   </div>
 
-  <div class="width-custom pl-3 d-inline my-auto custom-margin">
+  <div class="width-custom pl-2 d-inline my-auto custom-margin">
     <section class="w-25 d-inline">
       <mat-checkbox class="bloqueadas" (change)="filterBlocked($event.checked)"> Solo bloqueadas </mat-checkbox>
     </section>

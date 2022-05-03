@@ -2,6 +2,17 @@
   width: 100% !important;
 }
 
+.position-absolute {
+  position: absolute !important;
+  top:-17px;
+  left: 190px;
+}
+
+.w-240 {
+  width: 240px !important;
+}
+
+
 @media screen and (min-width:767px) {
   .width-custom {
     width: auto !important;
@@ -10,7 +21,7 @@
 
 @media screen and (min-width:1023px) {
   .width-custom {
-    width: 28% !important;
+    width: 27% !important;
   }
 
   .custom-margin {
@@ -21,9 +32,10 @@
   }
 }
 
+
 @media screen and (min-width:1439px) {
   .width-custom {
-    width: 20% !important;
+    width: 19% !important;
   }
 
   .custom-margin {
@@ -36,6 +48,6 @@
 
 @media screen and (min-width: 2530px) {
   .width-custom {
-    width: 12% !important;
+    width: 10.5% !important;
   }
 }
