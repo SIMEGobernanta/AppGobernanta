@@ -1,6 +1,6 @@
 .fila {
   flex-direction: row;
-  height: 130px;
+  height: 110px;
 }
 .borde-custom {
   border: 1px solid gray;
@@ -11,6 +11,22 @@
 
 .habitacion {
   border-left: 1px solid gray;
+}
+
+.custom-display {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.circlebadge {
+  width: 20px !important;
+  height: 20px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2px !important;
 }
 
 .sucia {
@@ -27,6 +43,20 @@
 
 .bloqueada {
   background-color: rgb(231, 94, 94) !important;
+}
+
+@media screen and ((min-width:324px) and (max-width:1022px))  {
+  .mx-sm-3 {
+    margin-left: 0.75em !important;
+    margin-right: 0.75em !important;
+  }
+}
+
+@media screen and (min-width: 1023) {
+  .mx-lg-0 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 
 @media screen and (min-width: 1919px) {
