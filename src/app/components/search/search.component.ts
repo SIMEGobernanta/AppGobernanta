@@ -19,15 +19,6 @@ export class SearchComponent implements OnInit {
   }
 
   search(value: string) {
-    /*
-    * La función de Carlos para los filtros de ordenación
-    * SI FUNCIONA
-    *
-    this.rooms = this.rooms.sort((a,b):number => {
-      if(a.adults > b.adults) {return 1}
-      return -1;
-    })
-    */
     //Este no actualiza el array visualmente y no se por que
     this.rooms = this.aux.filter(function(room) {
       return room.name.includes(value);
@@ -35,5 +26,4 @@ export class SearchComponent implements OnInit {
     //El console log es correcto
     console.log(this.rooms);
   }
-
 }
