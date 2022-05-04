@@ -110,6 +110,7 @@ export class SelectoresComponent implements OnInit {
   }
 
   resetFilters() {
+    /*
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     if (usedFilters.length > 0) {
       for (let i = 0; i < usedFilters.length; i++) {
@@ -118,6 +119,7 @@ export class SelectoresComponent implements OnInit {
     }
     //Falta resetear el formulario
     this.resetArray();
+    */
     this.usedAnyFilter = false;
   }
 }
