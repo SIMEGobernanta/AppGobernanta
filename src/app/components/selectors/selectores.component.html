@@ -1,11 +1,11 @@
-<form class="d-flex p-4 flex-wrap" #form="ngForm">
+<form class="d-flex p-4 flex-wrap" [formGroup]="myForm">
   <div class="width-custom pl-3 d-inline">
     <section class="d-inline w-25">
       <mat-form-field appearance="fill" class="w-240">
         <mat-label> Introduzca un rango de fechas </mat-label>
         <mat-date-range-input [rangePicker]="picker" [min]="minDate">
-          <input #dateRangeStart matStartDate placeholder="Fecha Entrada" readonly>
-          <input #dateRangeEnd matEndDate placeholder="Fecha Salida" readonly (dateChange)="filterByDate(dateRangeStart.value, dateRangeEnd.value)">
+          <input #dateRangeStart matStartDate placeholder="Fecha Entrada" readonly formControlName="start">
+          <input #dateRangeEnd matEndDate placeholder="Fecha Salida" readonly formControlName="end" (dateChange)="filterByDate(dateRangeStart.value, dateRangeEnd.value)">
         </mat-date-range-input>
         <mat-hint> DD/MM/YYYY - DD/MM/YYYY </mat-hint>
         <mat-datepicker-toggle MatSuffix [for]="picker" class="position-absolute"></mat-datepicker-toggle>
@@ -18,7 +18,7 @@
     <section class="d-inline w-25">
       <mat-form-field appearance="fill" class="w-240">
         <mat-label> Seleccione un estado </mat-label>
-        <mat-select>
+        <mat-select formControlName="status">
           <mat-option *ngFor="let estado of houseKeeping | keyvalue"[value]="estado.value" (onSelectionChange)="filterByStatus($event.source.value, $event.isUserInput)">
             {{ estado.value }}
           </mat-option>
@@ -29,13 +29,13 @@
 
   <div class="pl-3 pl-lg-0 d-inline my-auto custom-margin">
     <section class="w-25 d-inline">
-      <mat-checkbox class="bloqueadas" (change)="filterBlocked($event.checked)"> Solo bloqueadas </mat-checkbox>
+      <mat-checkbox class="bloqueadas" formControlName="blocked" (change)="filterBlocked($event.checked)"> Solo bloqueadas </mat-checkbox>
     </section>
   </div>
 
   <div class="pl-1 d-inline my-auto" *ngIf="usedAnyFilter">
     <!-- De momento no hace el reset al formulario -->
-      <button mat-icon-button type="reset" class="p-0" (click)="resetFilters(); form.reset()">
+      <button mat-icon-button type="reset" class="p-0" (click)="resetFilters()">
         <mat-icon  matTooltip="Limpiar Filtros" [style.color]="'red'" role="button"> cancel </mat-icon>
       </button>
   </div>

@@ -16,12 +16,25 @@ export class PaginacionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  setPageSizeOptions(): number[] {
+    const multiplier = 4; //Set whatever you want here
+    let x = 4; //Set whatever you want here (initial value for the page size options)
+    let aux = [];
+    aux.push(x);
+    while (x < this.rooms.length/multiplier) {
+      x *= multiplier;
+      aux.push(x);
+    }
+    aux.push(this.rooms.length);
+    return aux;
+  }
+
   changePage(event:any) {
     this.aux = [...this.rooms];
     const index = event.pageIndex;
     const cards = event.pageSize;
 
-    if (cards <= this.rooms.length){
+    if (cards < this.rooms.length){
       this.roomAux = this.aux.splice(index*(cards), cards);
     } else {
       this.roomAux = this.aux.splice(index, this.rooms.length);

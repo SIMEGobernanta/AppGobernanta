@@ -3,6 +3,7 @@ import { HouseKeeping, RoomInfo } from 'src/app/room-info';
 import * as moment from 'moment';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 export const MY_DATE_FORMATS = {
   parse: {dateInput: 'DD/MM/YYYY'},
@@ -36,11 +37,28 @@ export class SelectoresComponent implements OnInit {
     {prop: 'date', usedFilter:false, filterAction:[]},
   ];
   usedAnyFilter: boolean = false;
+  myForm!: FormGroup;
+  start!: FormControl;
+  end!: FormControl;
+  status!: FormControl;
+  blocked!: FormControl;
 
   constructor() { }
 
   ngOnInit(): void {
     this.minDate = moment().toDate();
+
+    this.start = new FormControl('');
+    this.end = new FormControl('');
+    this.status = new FormControl('');
+    this.blocked = new FormControl('');
+
+    this.myForm = new FormGroup({
+      start: this.start,
+      end: this.end,
+      status: this.status,
+      blocked: this.blocked
+    });
   }
 
   filterBlocked(checked:boolean) {
@@ -110,16 +128,14 @@ export class SelectoresComponent implements OnInit {
   }
 
   resetFilters() {
-    /*
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     if (usedFilters.length > 0) {
       for (let i = 0; i < usedFilters.length; i++) {
         usedFilters[i].usedFilter = false;
       }
     }
-    //Falta resetear el formulario
     this.resetArray();
-    */
+    this.myForm.reset();
     this.usedAnyFilter = false;
   }
 }
