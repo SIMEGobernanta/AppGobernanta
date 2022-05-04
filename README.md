@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Problemas a arreglar
 
-- Los filtros de arriba y el de búsqueda no actualizan visualmente la página
+- Los filtros de arriba, el de búsqueda y el paginador no actualizan visualmente la página
