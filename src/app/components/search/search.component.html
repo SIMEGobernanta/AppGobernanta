@@ -2,7 +2,7 @@
   <div class="pb-3 float-custom">
     <mat-form-field appearance="fill">
       <mat-label> Buscar: </mat-label>
-      <input matInput #value (input)="search(value.value.toString())">
+      <input matInput #input (input)="search(input.value.toString())">
     </mat-form-field>
   </div>
 </ng-container>

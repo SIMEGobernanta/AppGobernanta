@@ -22,8 +22,7 @@ export class SearchComponent implements OnInit {
     /*
     * La función de Carlos para los filtros de ordenación
     * SI FUNCIONA
-    */
-    /*
+    *
     this.rooms = this.rooms.sort((a,b):number => {
       if(a.adults > b.adults) {return 1}
       return -1;
