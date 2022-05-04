@@ -87,31 +87,31 @@ export class SelectoresComponent implements OnInit {
       for (let i = 0; i < usedFilters.length; i++) {
         //El primer filtro hay que igualarlo al array completo (rooms);
         if (i === 0) {
-          if(usedFilters[i].filterAction.length > 1) {
-            this.roomInfoAux = this.rooms.filter(room => {
-              return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1]);
-            });
-          } else {
-            const valueToCheck = usedFilters[i].prop;
-            if(valueToCheck === 'blocked') {
-              usedFilters[i].usedFilter ? this.roomInfoAux = this.rooms.filter(room => room[valueToCheck as keyof RoomInfo]) : this.roomInfoAux = this.rooms;
-            } else {
-              this.roomInfoAux = this.rooms.filter(room => room[valueToCheck as keyof RoomInfo] === usedFilters[i].filterAction[0]);
-            }
+          switch (usedFilters[i].prop) {
+            case 'blocked':
+              usedFilters[i].usedFilter ? this.roomInfoAux = this.rooms.filter(room => room[usedFilters[i].prop as keyof RoomInfo]) : this.roomInfoAux = this.roomInfoAux;
+            break;
+            case 'houseKeeping':
+              this.roomInfoAux = this.rooms.filter(room => room[usedFilters[i].prop as keyof RoomInfo] === usedFilters[i].filterAction[0]);
+            break;
+
+            case 'date':
+              this.roomInfoAux = this.rooms.filter(room => {return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1])});
+            break;
           }
           //Los que no sean el primero tienen que igualarse al array filtrado
         } else {
-          if(usedFilters[i].filterAction.length > 1) {
-            this.roomInfoAux = this.roomInfoAux.filter(room => {
-              return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1]);
-            });
-          } else {
-            const valueToCheck = usedFilters[i].prop;
-            if(valueToCheck === 'blocked') {
-              usedFilters[i].usedFilter ? this.roomInfoAux = this.roomInfoAux.filter(room => room[valueToCheck as keyof RoomInfo]) : this.roomInfoAux = this.roomInfoAux;
-            } else {
-              this.roomInfoAux = this.roomInfoAux.filter(room => room[valueToCheck as keyof RoomInfo] === usedFilters[i].filterAction[0]);
-            }
+          switch (usedFilters[i].prop) {
+            case 'blocked':
+              usedFilters[i].usedFilter ? this.roomInfoAux = this.roomInfoAux.filter(room => room[usedFilters[i].prop as keyof RoomInfo]) : this.roomInfoAux = this.roomInfoAux;
+            break;
+            case 'houseKeeping':
+              this.roomInfoAux = this.roomInfoAux.filter(room => room[usedFilters[i].prop as keyof RoomInfo] === usedFilters[i].filterAction[0]);
+            break;
+
+            case 'date':
+              this.roomInfoAux = this.roomInfoAux.filter(room => {return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1])});
+            break;
           }
         }
       }
