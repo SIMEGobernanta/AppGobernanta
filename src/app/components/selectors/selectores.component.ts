@@ -88,7 +88,7 @@ export class SelectoresComponent implements OnInit {
     //Esta cosa funciona, pero convendría cambiarlo jsjs
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     if (usedFilters.length === 0) {
-      this.resetArray();
+      this.resetFilters();
     } else {
       this.usedAnyFilter = true;
       for (let i = 0; i < usedFilters.length; i++) {
