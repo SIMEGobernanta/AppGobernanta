@@ -3,7 +3,6 @@ import { HouseKeeping, RoomInfo } from '../../room-info';
 import { MatDialog } from '@angular/material/dialog';
 import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { Subscription } from 'rxjs';
-import { ArrayFiltroService } from '../../services/array-filtro.service';
 
 @Component({
   selector: 'app-principal',
@@ -15,13 +14,14 @@ export class PrincipalComponent implements OnInit, OnDestroy {
 
   @Input() rooms!: RoomInfo[];
   subscriptions: Subscription[] = [];
+  isLoading = true;
 
-  constructor(public dialog: MatDialog, private arrayFiltro: ArrayFiltroService) {
+  constructor(public dialog: MatDialog) {
 
   }
 
   ngOnInit(): void {
-
+    this.isLoading = false;
   }
 
   ngOnDestroy(): void {
@@ -50,11 +50,6 @@ export class PrincipalComponent implements OnInit, OnDestroy {
       width: '600px',
       data: habitacion
     });
-    this.subscriptions.push(
-      dialogRef.afterClosed().subscribe(resp => {
-        console.log(resp);
-      })
-    );
   }
 }
 

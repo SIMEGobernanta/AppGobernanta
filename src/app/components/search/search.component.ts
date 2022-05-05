@@ -10,20 +10,33 @@ export class SearchComponent implements OnInit {
   @Input() rooms!: RoomInfo[];
   isLoading = true;
   aux!: RoomInfo[];
+  value = '';
 
   constructor() { }
 
   ngOnInit(): void {
     this.isLoading = false;
-    this.aux = [...this.rooms];
+    this.aux = JSON.parse(JSON.stringify(this.rooms));
   }
 
   search(value: string) {
-    //Este no actualiza el array visualmente y no se por que
-    this.rooms = this.aux.filter(function(room) {
-      return room.name.includes(value);
+    //THIS UPDATES VISUALLY
+    /*
+    this.rooms = this.rooms.sort((a,b) => {
+      if (a.adults > b.adults) {return 1};
+      return -1;
     });
-    //El console log es correcto
     console.log(this.rooms);
+    */
+   //THIS DOES NOT UPDATE VISUALLY ??????????????????????????
+   //I have to use aux so I don't lose the initial value and even if I use rooms it does not update
+   //Console logs seem to be fine ????
+    if (value) {
+      this.rooms = this.aux.filter(room => room.name.includes(value));
+      console.log('This.rooms.length = '+this.rooms.length);
+      return;
+    }
+    this.rooms = this.aux;
+    console.log('This.rooms.length = '+this.rooms.length);
   }
 }

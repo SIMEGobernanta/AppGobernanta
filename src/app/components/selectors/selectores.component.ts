@@ -31,17 +31,12 @@ export class SelectoresComponent implements OnInit {
   @Input() roomInfoAux!: RoomInfo[];
   houseKeeping = HouseKeeping;
   minDate!: Date;
-  filters: IFilters[] = [
-    {prop: 'blocked', usedFilter:false, filterAction:[]},
-    {prop: 'houseKeeping', usedFilter:false,filterAction:[]},
-    {prop: 'date', usedFilter:false, filterAction:[]},
-  ];
+  filters: IFilters[] = [{prop: 'blocked', usedFilter:false, filterAction:[]},{prop: 'houseKeeping', usedFilter:false,filterAction:[]},
+                         {prop: 'date', usedFilter:false, filterAction:[]}];
+
   usedAnyFilter: boolean = false;
   myForm!: FormGroup;
-  start!: FormControl;
-  end!: FormControl;
-  status!: FormControl;
-  blocked!: FormControl;
+  start!: FormControl; end!: FormControl; status!: FormControl; blocked!: FormControl;
 
   constructor() { }
 
@@ -129,11 +124,7 @@ export class SelectoresComponent implements OnInit {
 
   resetFilters() {
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
-    if (usedFilters.length > 0) {
-      for (let i = 0; i < usedFilters.length; i++) {
-        usedFilters[i].usedFilter = false;
-      }
-    }
+    for (let i = 0; i < usedFilters.length; i++) { usedFilters[i].usedFilter = false };
     this.resetArray();
     this.myForm.reset();
     this.usedAnyFilter = false;

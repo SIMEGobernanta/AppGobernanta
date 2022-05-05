@@ -1,8 +1,12 @@
 <ng-container *ngIf="!isLoading">
   <div class="pb-3 float-custom">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="example-form-field">
       <mat-label> Buscar: </mat-label>
-      <input matInput #input (input)="search(input.value.toString())">
+      <input type="number" matInput #input (input)="search(input.value.toString())">
+      <button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''" color="warn">
+        <mat-icon> close </mat-icon>
+      </button>
     </mat-form-field>
   </div>
 </ng-container>
+
