@@ -46,5 +46,23 @@ export class SearchComponent implements OnInit {
     }
     this.rooms = this.aux;
     console.log('This.rooms.length = '+this.rooms.length);
+    /* THIS DOESN'T WORK EVEN IF ITS THE SAME ARRAY
+    if (value) {
+      this.rooms = this.rooms.filter(room => room.name.includes(value));
+      console.log('This.rooms.length = '+this.rooms.length);
+      return;
+    }
+
+
+    pregunta:
+
+    Hay alguna diferencia en la manera que tocan los datos array.sort y array.filter??
+    no entiendo por que el sort funciona (solo si lo ordenas con el mismo array no funciona con una copia)
+    y el filter no funciona con NINGUN array, a pesar de que todos lo actualizan correctamente en el console.log
+    */
+  }
+
+  resetArray(): void {
+    this.rooms = this.aux;
   }
 }

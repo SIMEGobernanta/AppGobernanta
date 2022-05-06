@@ -31,12 +31,16 @@ export class SelectoresComponent implements OnInit {
   @Input() roomInfoAux!: RoomInfo[];
   houseKeeping = HouseKeeping;
   minDate!: Date;
-  filters: IFilters[] = [{prop: 'blocked', usedFilter:false, filterAction:[]},{prop: 'houseKeeping', usedFilter:false,filterAction:[]},
-                         {prop: 'date', usedFilter:false, filterAction:[]}];
-
-  usedAnyFilter: boolean = false;
   myForm!: FormGroup;
   start!: FormControl; end!: FormControl; status!: FormControl; blocked!: FormControl;
+
+
+  filters: IFilters[] = [
+    {prop: 'blocked', usedFilter:false, filterAction:[]},
+    {prop: 'houseKeeping', usedFilter:false,filterAction:[]},
+    {prop: 'date', usedFilter:false, filterAction:[]},
+  ];
+  usedAnyFilter: boolean = false;
 
   constructor() { }
 
@@ -79,42 +83,29 @@ export class SelectoresComponent implements OnInit {
     this.applyFilters();
   }
 
+  //Doesn't update visually but console.logs are correct
+  //Esta cosa funciona, pero convendría cambiarlo jsjs
   applyFilters() {
-    //Esta cosa funciona, pero convendría cambiarlo jsjs
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     if (usedFilters.length === 0) {
       this.resetFilters();
     } else {
+      this.resetArray();
       this.usedAnyFilter = true;
       for (let i = 0; i < usedFilters.length; i++) {
-        //El primer filtro hay que igualarlo al array completo (this.rooms);
-        if (i === 0) {
-          switch (usedFilters[i].prop) {
-            case 'blocked':
-              usedFilters[i].usedFilter ? this.roomInfoAux = this.rooms.filter(room => room[usedFilters[i].prop as keyof RoomInfo]) : this.roomInfoAux = this.roomInfoAux;
+        switch (usedFilters[i].prop) {
+           case 'blocked':
+             usedFilters[i].usedFilter ? this.roomInfoAux = this.roomInfoAux.filter(room => room[usedFilters[i].prop as keyof RoomInfo]) : this.roomInfoAux = this.roomInfoAux;
+           break;
+           case 'houseKeeping':
+             this.roomInfoAux = this.roomInfoAux.filter(room => room[usedFilters[i].prop as keyof RoomInfo] === usedFilters[i].filterAction[0]);
+           break;
+           case 'date':
+             this.roomInfoAux =  this.roomInfoAux.filter(room => {return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1])});
             break;
-            case 'houseKeeping':
-              this.roomInfoAux = this.rooms.filter(room => room[usedFilters[i].prop as keyof RoomInfo] === usedFilters[i].filterAction[0]);
-            break;
-            case 'date':
-              this.roomInfoAux = this.rooms.filter(room => {return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1])});
-            break;
-          }
-        //Los que no sean el primero tienen que igualarse al array filtrado por el primero (this.roomInfoAux)
-        } else {
-          switch (usedFilters[i].prop) {
-            case 'blocked':
-              usedFilters[i].usedFilter ? this.roomInfoAux = this.roomInfoAux.filter(room => room[usedFilters[i].prop as keyof RoomInfo]) : this.roomInfoAux = this.roomInfoAux;
-            break;
-            case 'houseKeeping':
-              this.roomInfoAux = this.roomInfoAux.filter(room => room[usedFilters[i].prop as keyof RoomInfo] === usedFilters[i].filterAction[0]);
-            break;
-            case 'date':
-              this.roomInfoAux = this.roomInfoAux.filter(room => {return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1])});
-            break;
-          }
         }
       }
+      console.log(this.roomInfoAux);
     }
   }
 
@@ -126,6 +117,7 @@ export class SelectoresComponent implements OnInit {
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     for (let i = 0; i < usedFilters.length; i++) { usedFilters[i].usedFilter = false };
     this.resetArray();
+    console.log(this.roomInfoAux);
     this.myForm.reset();
     this.usedAnyFilter = false;
   }

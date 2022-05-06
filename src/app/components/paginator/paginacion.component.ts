@@ -29,6 +29,7 @@ export class PaginacionComponent implements OnInit {
     return aux;
   }
 
+  //Does not update visually but console.log is correct
   changePage(event:any) {
     this.aux = [...this.rooms];
     const index = event.pageIndex;
@@ -39,7 +40,6 @@ export class PaginacionComponent implements OnInit {
     } else {
       this.roomAux = this.aux.splice(index, this.rooms.length);
     }
-
     console.log(this.roomAux);
   }
 

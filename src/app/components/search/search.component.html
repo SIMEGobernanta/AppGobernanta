@@ -3,7 +3,7 @@
     <mat-form-field appearance="fill" class="example-form-field">
       <mat-label> Buscar: </mat-label>
       <input type="number" matInput #input (input)="search(input.value.toString())">
-      <button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''" color="warn">
+      <button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''; resetArray()" color="warn">
         <mat-icon> close </mat-icon>
       </button>
     </mat-form-field>
