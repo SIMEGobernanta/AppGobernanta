@@ -1,6 +1,6 @@
-
 .float-custom {
-  justify-content: flex-start !important;
+  justify-content: flex-end !important;
   display: flex;
   margin-left: 2%;
 }
+

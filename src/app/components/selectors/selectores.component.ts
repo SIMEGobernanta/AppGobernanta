@@ -47,6 +47,10 @@ export class SelectoresComponent implements OnInit {
   ngOnInit(): void {
     this.minDate = moment().toDate();
 
+    this.initForm();
+  }
+
+  initForm(): void {
     this.start = new FormControl('');
     this.end = new FormControl('');
     this.status = new FormControl('');
