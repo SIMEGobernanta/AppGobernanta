@@ -64,19 +64,19 @@ export class SelectoresComponent implements OnInit {
     });
   }
 
-  filterBlocked(checked:boolean) {
+  filterBlocked(checked:boolean): void {
     this.filters[0].usedFilter = !this.filters[0].usedFilter;
     this.applyFilters();
   }
 
-  filterByStatus(selected:string, manual:boolean) {
+  filterByStatus(selected:string, manual:boolean): void {
     this.filters[1].usedFilter = true;
     this.filters[1].filterAction = new Array(selected);
 
     if (manual) this.applyFilters();
   }
 
-  filterByDate(start:string, end:string) {
+  filterByDate(start:string, end:string): void {
     this.filters[2].usedFilter = true;
     //Formateo de las fechas
     const startDate = new Date(start.split('/').reverse().join('/'));
@@ -89,7 +89,7 @@ export class SelectoresComponent implements OnInit {
 
   //Doesn't update visually but console.logs are correct
   //Esta cosa funciona, pero convendría cambiarlo jsjs
-  applyFilters() {
+  applyFilters(): void {
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     if (usedFilters.length === 0) {
       this.resetFilters();
@@ -113,11 +113,11 @@ export class SelectoresComponent implements OnInit {
     }
   }
 
-  resetArray() {
+  resetArray(): void {
     this.roomInfoAux = this.rooms;
   }
 
-  resetFilters() {
+  resetFilters(): void {
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     for (let i = 0; i < usedFilters.length; i++) { usedFilters[i].usedFilter = false };
     this.resetArray();

@@ -19,11 +19,11 @@ export class SearchComponent implements OnInit {
     this.aux = [...this.rooms];
   }
 
-  search(value: string) {
-    let auxiliar: RoomInfo[];
+  search(value: string): void {
     if (value) {
-      auxiliar = this.aux.filter(room => room.name.includes(value));
-      this.rooms = [...auxiliar];
+      //Array.prototype.filter() crea un nuevo array, y al igualar this.rooms al nuevo array perdemos la referencia
+      //Por eso no se actualiza visualmente aunque el console.log sea correcto
+      this.rooms = this.aux.filter(room => room.name.includes(value));
       console.log('This.rooms = '+this.rooms);
       return;
     }

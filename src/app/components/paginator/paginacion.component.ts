@@ -30,7 +30,7 @@ export class PaginacionComponent implements OnInit {
   }
 
   //Does not update visually but console.log is correct
-  changePage(event:any) {
+  changePage(event:any): void {
     this.aux = [...this.rooms];
     const index = event.pageIndex;
     const cards = event.pageSize;
