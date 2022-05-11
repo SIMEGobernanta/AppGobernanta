@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { RoomInfo } from 'src/app/room-info';
+import { ArrayFiltroService } from 'src/app/services/array-filtro.service';
 
 @Component({
   selector: 'app-paginacion',
@@ -11,9 +13,11 @@ export class PaginacionComponent implements OnInit {
   @Input() roomAux!: RoomInfo[];
   aux:RoomInfo[] = [];
 
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   setPageSizeOptions(): number[] {
@@ -31,16 +35,15 @@ export class PaginacionComponent implements OnInit {
 
   //Does not update visually but console.log is correct
   changePage(event:any): void {
-    this.aux = [...this.rooms];
+    this.aux = JSON.parse(JSON.stringify(this.rooms));
     const index = event.pageIndex;
     const cards = event.pageSize;
 
     if (cards < this.rooms.length){
       this.roomAux = this.aux.splice(index*(cards), cards);
     } else {
-      this.roomAux = this.aux.splice(index, this.rooms.length);
+      this.roomAux = this.rooms;
     }
-    console.log(this.roomAux);
   }
 
 }

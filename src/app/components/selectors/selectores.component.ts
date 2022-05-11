@@ -71,7 +71,7 @@ export class SelectoresComponent implements OnInit {
 
   filterByStatus(selected:string, manual:boolean): void {
     this.filters[1].usedFilter = true;
-    this.filters[1].filterAction = new Array(selected);
+    this.filters[1].filterAction = [selected];
 
     if (manual) this.applyFilters();
   }
@@ -87,7 +87,6 @@ export class SelectoresComponent implements OnInit {
     this.applyFilters();
   }
 
-  //Doesn't update visually but console.logs are correct
   //Esta cosa funciona, pero convendría cambiarlo jsjs
   applyFilters(): void {
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
@@ -109,7 +108,6 @@ export class SelectoresComponent implements OnInit {
             break;
         }
       }
-      console.log(this.roomInfoAux);
       this.arrayFiltro.sendArray.emit(this.roomInfoAux);
       this.arrayFiltro.sendAux.emit(this.roomInfoAux);
     }
@@ -125,7 +123,6 @@ export class SelectoresComponent implements OnInit {
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     for (let i = 0; i < usedFilters.length; i++) { usedFilters[i].usedFilter = false };
     this.resetArray();
-    console.log(this.roomInfoAux);
     this.myForm.reset();
     this.usedAnyFilter = false;
   }

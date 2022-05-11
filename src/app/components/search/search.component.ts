@@ -33,7 +33,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   search(value: string): void {
     if (value) {
       this.rooms = this.aux.filter(room => room.name.includes(value));
-      console.log('This.rooms = '+this.rooms);
       this.arrayFiltro.sendAux.emit(this.rooms);
       return;
     }
