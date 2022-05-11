@@ -125,7 +125,7 @@ export class SelectoresComponent implements OnInit {
   resetFilters(): void {
     for (let i = 0; i < this.filters.length; i++) { this.filters[i].usedFilter = false };
     this.usedAnyFilter = false;
-    this.roomInfoAux = this.rooms;
+    this.resetArray();
     this.myForm.reset();
   }
 }
