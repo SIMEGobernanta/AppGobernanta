@@ -39,7 +39,7 @@ export class SelectoresComponent implements OnInit {
 
   filters: IFilters[] = [
     {prop: 'blocked', usedFilter:false, filterAction:[]},
-    {prop: 'houseKeeping', usedFilter:false,filterAction:[]},
+    {prop: 'houseKeeping', usedFilter:false, filterAction:[]},
     {prop: 'date', usedFilter:false, filterAction:[]},
   ];
   usedAnyFilter: boolean = false;
@@ -72,9 +72,8 @@ export class SelectoresComponent implements OnInit {
   }
 
   filterByStatus(selected:string, manual:boolean): void {
-    this.filters[1].usedFilter = true;
-
     if (manual) {
+      this.filters[1].usedFilter = true;
       this.filters[1].filterAction = [selected];
       this.applyFilters();
     }
@@ -124,10 +123,9 @@ export class SelectoresComponent implements OnInit {
   }
 
   resetFilters(): void {
-    const usedFilters = this.filters.filter(filter => filter.usedFilter);
-    for (let i = 0; i < usedFilters.length; i++) { usedFilters[i].usedFilter = false };
+    for (let i = 0; i < this.filters.length; i++) { this.filters[i].usedFilter = false };
     this.usedAnyFilter = false;
-    this.resetArray();
+    this.roomInfoAux = this.rooms;
     this.myForm.reset();
   }
 }
