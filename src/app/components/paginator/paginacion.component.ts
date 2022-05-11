@@ -16,10 +16,9 @@ export class PaginacionComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-  }
-
+  //Set paginator page size options (Cards displayed)
   setPageSizeOptions(): number[] {
     const multiplier = 4; //Set whatever you want here
     let x = 4; //Set whatever you want here (initial value for the page size options)
@@ -33,7 +32,7 @@ export class PaginacionComponent implements OnInit {
     return aux;
   }
 
-  //Does not update visually but console.log is correct
+  //Subscribe to this.arrayfiltroservice.sendAux and emit spliced array
   changePage(event:any): void {
     this.aux = JSON.parse(JSON.stringify(this.rooms));
     const index = event.pageIndex;
@@ -44,6 +43,7 @@ export class PaginacionComponent implements OnInit {
     } else {
       this.roomAux = this.rooms;
     }
+    console.log(this.roomAux);
   }
 
 }

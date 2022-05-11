@@ -16,9 +16,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   isLoading = true;
 
-  constructor(public dialog: MatDialog) {
-
-  }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.isLoading = false;
@@ -28,6 +26,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach( subscription => subscription.unsubscribe());
   }
 
+  //Asignación de clases a las cartas, solo aplica estilos
   roomStatus(status: HouseKeeping): string {
     let resul = '';
     switch (status) {
@@ -45,11 +44,17 @@ export class PrincipalComponent implements OnInit, OnDestroy {
     return resul;
   }
 
+  //Función para abrir el diálogo
   openDialog(habitacion: RoomInfo): void {
     const dialogRef = this.dialog.open(CloseDialogComponent, {
       width: '600px',
       data: habitacion
     });
+    this.subscriptions.push(
+      dialogRef.afterClosed().subscribe(resp => {
+        console.log(resp);
+      })
+    );
   }
 }
 

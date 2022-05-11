@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoading = true;
   title = 'Gobernanta';
   momentDate = moment(new Date());
-  roomsAux!: RoomInfo[];
+  //Sustituir este array por lo que venga de la base de datos o API
   rooms: RoomInfo[] = [
     {
       name: '100',
@@ -219,6 +219,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   ];
 
+  roomsAux!: RoomInfo[];
   subscriptions: Subscription[] = [];
 
     constructor(private arrayFiltro: ArrayFiltroService) { }

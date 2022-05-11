@@ -28,8 +28,9 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
-   }
+  }
 
+  //Simple search filter
   search(value: string): void {
     if (value) {
       this.rooms = this.aux.filter(room => room.name.includes(value));
@@ -39,6 +40,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.resetArray();
   }
 
+  //Emit full array in case value = '';
   resetArray(): void {
     this.rooms = this.aux;
     this.arrayFiltro.sendAux.emit(this.aux);

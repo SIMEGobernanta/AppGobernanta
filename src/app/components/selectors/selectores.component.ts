@@ -6,6 +6,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { FormControl, FormGroup } from '@angular/forms';
 import { ArrayFiltroService } from 'src/app/services/array-filtro.service';
 
+//Date format for the daterangepicker
 export const MY_DATE_FORMATS = {
   parse: {dateInput: 'DD/MM/YYYY'},
   display: {dateInput: 'DD/MM/YYYY', monthYearLabel: 'MMMM YYYY', dateA11yLabel: 'LL', monthYearA11yLabel: 'MMMM YYYY'},
@@ -50,6 +51,7 @@ export class SelectoresComponent implements OnInit {
     this.initForm();
   }
 
+  //Set the FormControls, allows form reset
   initForm(): void {
     this.start = new FormControl('');
     this.end = new FormControl('');
@@ -64,16 +66,18 @@ export class SelectoresComponent implements OnInit {
     });
   }
 
-  filterBlocked(checked:boolean): void {
+  filterBlocked(): void {
     this.filters[0].usedFilter = !this.filters[0].usedFilter;
     this.applyFilters();
   }
 
   filterByStatus(selected:string, manual:boolean): void {
     this.filters[1].usedFilter = true;
-    this.filters[1].filterAction = [selected];
 
-    if (manual) this.applyFilters();
+    if (manual) {
+      this.filters[1].filterAction = [selected];
+      this.applyFilters();
+    }
   }
 
   filterByDate(start:string, end:string): void {
@@ -81,13 +85,13 @@ export class SelectoresComponent implements OnInit {
     //Formateo de las fechas
     const startDate = new Date(start.split('/').reverse().join('/'));
     const endDate = new Date(end.split('/').reverse().join('/'));
+    //Pasar la fecha limite a las 23:59:59 para asegurarse de que se incluye en el filtro
     endDate.setHours(23); endDate.setMinutes(59); endDate.setSeconds(59);
     this.filters[2].filterAction = [startDate.toString(),endDate.toString()];
 
     this.applyFilters();
   }
 
-  //Esta cosa funciona, pero convendría cambiarlo jsjs
   applyFilters(): void {
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     if (usedFilters.length === 0) {
@@ -122,8 +126,8 @@ export class SelectoresComponent implements OnInit {
   resetFilters(): void {
     const usedFilters = this.filters.filter(filter => filter.usedFilter);
     for (let i = 0; i < usedFilters.length; i++) { usedFilters[i].usedFilter = false };
+    this.usedAnyFilter = false;
     this.resetArray();
     this.myForm.reset();
-    this.usedAnyFilter = false;
   }
 }

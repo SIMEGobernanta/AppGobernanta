@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-leyenda',
   templateUrl: './leyenda.component.html',
   styleUrls: ['./leyenda.component.css']
 })
-export class LeyendaComponent implements OnInit {
+export class LeyendaComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

@@ -2,7 +2,7 @@
   <mat-paginator
     class="bg-light float-custom"
     [length]='rooms.length'
-    [pageSize]="4"
+    [pageSize]="rooms.length"
     [pageSizeOptions]="setPageSizeOptions()"
     aria-label="Select page"
     (page)="changePage($event)">
