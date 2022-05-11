@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ArrayFiltroService } from 'src/app/services/array-filtro.service';
 
 export const MY_DATE_FORMATS = {
   parse: {dateInput: 'DD/MM/YYYY'},
@@ -42,11 +43,10 @@ export class SelectoresComponent implements OnInit {
   ];
   usedAnyFilter: boolean = false;
 
-  constructor() { }
+  constructor(private arrayFiltro: ArrayFiltroService) { }
 
   ngOnInit(): void {
     this.minDate = moment().toDate();
-
     this.initForm();
   }
 
@@ -110,11 +110,15 @@ export class SelectoresComponent implements OnInit {
         }
       }
       console.log(this.roomInfoAux);
+      this.arrayFiltro.sendArray.emit(this.roomInfoAux);
+      this.arrayFiltro.sendAux.emit(this.roomInfoAux);
     }
   }
 
   resetArray(): void {
     this.roomInfoAux = this.rooms;
+    this.arrayFiltro.sendArray.emit(this.roomInfoAux);
+    this.arrayFiltro.sendAux.emit(this.roomInfoAux);
   }
 
   resetFilters(): void {

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HouseKeeping, RoomInfo } from './room-info';
 import * as moment from 'moment';
+import { ArrayFiltroService } from './services/array-filtro.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +10,11 @@ import * as moment from 'moment';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   isLoading = true;
   title = 'Gobernanta';
   momentDate = moment(new Date());
-  roomsAux: RoomInfo[];
+  roomsAux!: RoomInfo[];
   rooms: RoomInfo[] = [
     {
       name: '100',
@@ -217,8 +219,20 @@ export class AppComponent {
     }
   ];
 
-    constructor() {
+  subscriptions: Subscription[] = [];
+
+    constructor(private arrayFiltro: ArrayFiltroService) { }
+
+    ngOnInit(): void {
       this.roomsAux = [...this.rooms];
       this.isLoading = false;
+      this.subscriptions.push(this.arrayFiltro.sendAux.subscribe((resp:RoomInfo[]) => {
+        this.roomsAux = resp;
+        })
+      );
+    }
+
+    ngOnDestroy(): void {
+      this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 }

@@ -6,7 +6,8 @@ import { RoomInfo } from '../room-info';
 })
 export class ArrayFiltroService {
 
-  public sendArray: EventEmitter<RoomInfo[]> = new EventEmitter;
+  public sendArray: EventEmitter<RoomInfo[]> = new EventEmitter();
+  public sendAux: EventEmitter<RoomInfo[]> = new EventEmitter();
 
   constructor() { }
 }

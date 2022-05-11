@@ -1,37 +1,47 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { RoomInfo } from 'src/app/room-info';
+import { ArrayFiltroService } from 'src/app/services/array-filtro.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   @Input() rooms!: RoomInfo[];
+  subscriptions: Subscription[] = [];
   isLoading = true;
   aux!: RoomInfo[];
   value = '';
 
-  constructor() { }
+  constructor(private arrayFiltro: ArrayFiltroService) { }
 
   ngOnInit(): void {
     this.isLoading = false;
-    this.aux = [...this.rooms];
+    this.aux = JSON.parse(JSON.stringify(this.rooms));
+    this.subscriptions.push(this.arrayFiltro.sendArray.subscribe((resp:RoomInfo[]) => {
+        this.aux = resp;
+      })
+    );
   }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+   }
 
   search(value: string): void {
     if (value) {
-      //Array.prototype.filter() crea un nuevo array, y al igualar this.rooms al nuevo array perdemos la referencia
-      //Por eso no se actualiza visualmente aunque el console.log sea correcto
       this.rooms = this.aux.filter(room => room.name.includes(value));
       console.log('This.rooms = '+this.rooms);
+      this.arrayFiltro.sendAux.emit(this.rooms);
       return;
     }
-    this.rooms = this.aux;
-    console.log('This.rooms = '+this.rooms);
+    this.resetArray();
   }
 
   resetArray(): void {
     this.rooms = this.aux;
+    this.arrayFiltro.sendAux.emit(this.aux);
   }
 }
