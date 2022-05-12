@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RoomInfo } from 'src/app/room-info';
 import { ArrayFiltroService } from 'src/app/services/array-filtro.service';
@@ -10,10 +10,11 @@ import { ArrayFiltroService } from 'src/app/services/array-filtro.service';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @Input() rooms!: RoomInfo[];
-  subscriptions: Subscription[] = [];
+  @ViewChild('input') input!: ElementRef;
   isLoading = true;
+  subscriptions: Subscription[] = [];
   aux!: RoomInfo[];
-  value = '';
+
 
   constructor(private arrayFiltro: ArrayFiltroService) { }
 
@@ -24,6 +25,12 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.aux = resp;
       })
     );
+    this.subscriptions.push(
+      this.arrayFiltro.inputValue.subscribe((resp:any) => {
+        this.resetArray();
+      })
+    );
+
   }
 
   ngOnDestroy(): void {
@@ -42,6 +49,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   //Emit full array in case value = '';
   resetArray(): void {
+    this.input.nativeElement.value = '';
     this.rooms = this.aux;
     this.arrayFiltro.sendAux.emit(this.aux);
   }

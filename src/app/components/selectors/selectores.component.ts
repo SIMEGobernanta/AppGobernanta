@@ -5,6 +5,8 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ArrayFiltroService } from 'src/app/services/array-filtro.service';
+import { Subscription } from 'rxjs';
+import { isNull } from '@angular/compiler/src/output/output_ast';
 
 //Date format for the daterangepicker
 export const MY_DATE_FORMATS = {
@@ -12,11 +14,12 @@ export const MY_DATE_FORMATS = {
   display: {dateInput: 'DD/MM/YYYY', monthYearLabel: 'MMMM YYYY', dateA11yLabel: 'LL', monthYearA11yLabel: 'MMMM YYYY'},
 };
 
-interface IFilters {
+export interface IFilters {
   prop: string;
   usedFilter: boolean;
   filterAction: Array<string>;
 }
+
 
 @Component({
   selector: 'app-selectores',
@@ -31,18 +34,21 @@ interface IFilters {
 export class SelectoresComponent implements OnInit {
   @Input() rooms!: RoomInfo[];
   @Input() roomInfoAux!: RoomInfo[];
-  houseKeeping = HouseKeeping;
-  minDate!: Date;
-  myForm!: FormGroup;
-  start!: FormControl; end!: FormControl; status!: FormControl; blocked!: FormControl;
 
+  usedAnyFilter: boolean = false;
 
   filters: IFilters[] = [
     {prop: 'blocked', usedFilter:false, filterAction:[]},
     {prop: 'houseKeeping', usedFilter:false, filterAction:[]},
     {prop: 'date', usedFilter:false, filterAction:[]},
+    {prop: 'search', usedFilter:false, filterAction:[]}
   ];
-  usedAnyFilter: boolean = false;
+
+  houseKeeping = HouseKeeping;
+  minDate!: Date;
+  myForm!: FormGroup;
+  start!: FormControl; end!: FormControl; status!: FormControl; blocked!: FormControl;
+
 
   constructor(private arrayFiltro: ArrayFiltroService) { }
 
@@ -108,7 +114,7 @@ export class SelectoresComponent implements OnInit {
            break;
            case 'date':
              this.roomInfoAux =  this.roomInfoAux.filter(room => {return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1])});
-            break;
+           break;
         }
       }
       this.arrayFiltro.sendArray.emit(this.roomInfoAux);
@@ -127,5 +133,7 @@ export class SelectoresComponent implements OnInit {
     this.usedAnyFilter = false;
     this.resetArray();
     this.myForm.reset();
+
+    this.arrayFiltro.resetInput();
   }
 }
