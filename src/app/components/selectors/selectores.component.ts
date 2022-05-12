@@ -41,7 +41,6 @@ export class SelectoresComponent implements OnInit {
     {prop: 'blocked', usedFilter:false, filterAction:[]},
     {prop: 'houseKeeping', usedFilter:false, filterAction:[]},
     {prop: 'date', usedFilter:false, filterAction:[]},
-    {prop: 'search', usedFilter:false, filterAction:[]}
   ];
 
   houseKeeping = HouseKeeping;
