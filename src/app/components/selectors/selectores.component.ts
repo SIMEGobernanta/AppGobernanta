@@ -85,15 +85,20 @@ export class SelectoresComponent implements OnInit {
   }
 
   filterByDate(start:string, end:string): void {
-    this.filters[2].usedFilter = true;
-    //Formateo de las fechas
-    const startDate = new Date(start.split('/').reverse().join('/'));
-    const endDate = new Date(end.split('/').reverse().join('/'));
-    //Pasar la fecha limite a las 23:59:59 para asegurarse de que se incluye en el filtro
-    endDate.setHours(23); endDate.setMinutes(59); endDate.setSeconds(59);
-    this.filters[2].filterAction = [startDate.toString(),endDate.toString()];
+    if (start.length > 0 && end.length > 0) {
+      this.filters[2].usedFilter = true;
 
-    this.applyFilters();
+      //Formateo de las fechas
+      const startDate = new Date(start.split('/').reverse().join('/'));
+      const endDate = new Date(end.split('/').reverse().join('/'));
+      //Pasar la fecha limite a las 23:59:59'999 para asegurarse de que se incluye en el filtro
+      endDate.setHours(23); endDate.setMinutes(59); endDate.setSeconds(59); endDate.setMilliseconds(999);
+      this.filters[2].filterAction = [startDate.toString(),endDate.toString()];
+
+      this.applyFilters();
+      return;
+    }
+    this.filters[2].usedFilter = false;
   }
 
   applyFilters(): void {
