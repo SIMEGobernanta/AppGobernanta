@@ -1,5 +1,6 @@
 .float-custom {
   width:80%;
+<<<<<<< HEAD
 }
 
 @media screen and (min-width:767px) {
@@ -7,6 +8,10 @@
     display:flex;
     justify-content:flex-end;
   }
+=======
+  display:flex;
+  justify-content:flex-end;
+>>>>>>> 462b00db0f4090405d115747f60f2f666187522b
 }
 
 .example-form-field {
