@@ -3,9 +3,6 @@
 </header>
 
 <main class="mt-3" *ngIf="!isLoading; else spinner">
-  <app-selectores [rooms]="rooms" [roomInfoAux]="roomsAux"> </app-selectores>
-
-  <app-paginacion [rooms]="rooms" [roomAux]="roomsAux"> </app-paginacion>
   <div class="d-md-flex d-block">
     <app-filtrosorden [rooms]="roomsAux" class="d-block w-80"> </app-filtrosorden>
 
