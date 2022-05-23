@@ -43,11 +43,7 @@
 
 @media screen and (min-width:1439px) {
   .width-custom {
-<<<<<<< HEAD
     width: 29% !important;
-=======
-    width: 19% !important;
->>>>>>> 462b00db0f4090405d115747f60f2f666187522b
   }
 
   .custom-margin {
@@ -57,11 +53,7 @@
 
 @media screen and (min-width: 1919px) {
   .width-custom {
-<<<<<<< HEAD
     width: 22% !important;
-=======
-    width: 14.2% !important;
->>>>>>> 462b00db0f4090405d115747f60f2f666187522b
   }
   .custom-margin {
     width: 140px !important;
@@ -70,11 +62,7 @@
 
 @media screen and (min-width: 2530px) {
   .width-custom {
-<<<<<<< HEAD
     width: 16% !important;
-=======
-    width: 10.5% !important;
->>>>>>> 462b00db0f4090405d115747f60f2f666187522b
   }
   .custom-margin {
     width: 140px !important;

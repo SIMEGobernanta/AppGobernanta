@@ -3,28 +3,21 @@
 </header>
 
 <main class="mt-3" *ngIf="!isLoading; else spinner">
-<<<<<<< HEAD
-=======
   <app-selectores [rooms]="rooms" [roomInfoAux]="roomsAux"> </app-selectores>
 
   <app-paginacion [rooms]="rooms" [roomAux]="roomsAux"> </app-paginacion>
-
->>>>>>> 462b00db0f4090405d115747f60f2f666187522b
   <div class="d-md-flex d-block">
     <app-filtrosorden [rooms]="roomsAux" class="d-block w-80"> </app-filtrosorden>
 
     <app-search [rooms]="roomsAux" class="float-right w-20"> </app-search>
   </div>
 
-<<<<<<< HEAD
   <div class="row">
     <app-selectores class="col-12 col-xl-8" [rooms]="rooms" [roomInfoAux]="roomsAux"> </app-selectores>
 
     <app-paginacion class="col-12 col-xl-4 display-end" [rooms]="rooms" [roomAux]="roomsAux"> </app-paginacion>
   </div>
 
-=======
->>>>>>> 462b00db0f4090405d115747f60f2f666187522b
   <app-principal [rooms]="roomsAux"> </app-principal>
 
   <app-leyenda> </app-leyenda>
