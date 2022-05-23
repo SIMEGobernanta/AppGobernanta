@@ -1,0 +1,34 @@
+<div *ngIf="!isLoading">
+  <ng-container *ngIf="rooms.length != 0; else noHabs">
+    <div class="container-xxl mx-5 pt-5 pt-md-0">
+      <div class="row">
+        <div class="fila col-12 col-md-6 col-lg-3 col-xl-2 col-xxl-1 my-2 d-inline-flex p-0" *ngFor="let habitacion of rooms" (dblclick)="openDialog(habitacion)">
+          <div class="w-100 d-inline-flex h-100 m-2 borde-custom">
+            <div class="w-25 personas h-100" style="background-color: #CCC;">
+              <!-- *ngIf="!habitacion.blocked" ?? -->
+              <div class="my-3 custom-display mx-0 mx-sm-3 mx-lg-0">
+                <mat-icon> directions_walk </mat-icon> <span class="badge badge-pill badge-primary circlebadge"> {{habitacion.adults}} </span> <br>
+                <mat-icon> child_care </mat-icon> <span class="badge badge-pill badge-primary circlebadge"> {{habitacion.kids}} </span> <br>
+                <mat-icon> child_friendly </mat-icon> <span class="badge badge-pill badge-primary circlebadge"> {{habitacion.babies}} </span>
+              </div>
+            </div>
+
+            <div class="w-75 habitacion text-center" [ngClass]="habitacion.blocked ? 'bloqueada': roomStatus(habitacion.houseKeeping)">
+              <span class="h6"> {{habitacion.name}} </span>  <br/>
+              <span *ngIf="habitacion.contactName"> {{habitacion.contactName}} </span> <br *ngIf="habitacion.contactName">
+              <span *ngIf="habitacion.houseKeeping == 'PENDING_REVIEW' && !habitacion.blocked"> <mat-icon style="color:blue;">input</mat-icon> {{habitacion.startDate | date: 'dd-MM-YYYY' }} </span> <br *ngIf="habitacion.houseKeeping == 'PENDING_REVIEW'">
+              <span *ngIf="habitacion.houseKeeping == 'PENDING_REVIEW' && !habitacion.blocked"> <mat-icon style="color:red;"> output </mat-icon>  {{habitacion.endDate | date: 'dd-MM-YYYY' }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noHabs>
+    <div class="mx-5 my-3 w-100 text-center">
+      <p style="color:red; font-size: 1.5em"> No hay habitaciones que coincidan con los filtros </p>
+    </div>
+  </ng-template>
+
+</div>

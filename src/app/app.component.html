@@ -1,0 +1,32 @@
+<header>
+  <app-navbar></app-navbar>
+</header>
+
+<main class="mt-3" *ngIf="!isLoading; else spinner">
+  <div class="d-md-flex d-block">
+    <app-filtrosorden [rooms]="roomsAux" class="d-block w-80"> </app-filtrosorden>
+
+    <app-search [rooms]="roomsAux" class="float-right w-20"> </app-search>
+  </div>
+
+  <div class="row">
+    <app-selectores class="col-12 col-xl-8" [rooms]="rooms" [roomInfoAux]="roomsAux"> </app-selectores>
+
+    <app-paginacion class="col-12 col-xl-4 display-end" [rooms]="rooms" [roomAux]="roomsAux"> </app-paginacion>
+  </div>
+
+  <app-principal [rooms]="roomsAux"> </app-principal>
+
+  <app-leyenda> </app-leyenda>
+</main>
+
+<ng-template #spinner>
+  <div style="display:flex; justify-content:center; align-items: center; flex-wrap: wrap;" class="mt-3 text-danger">
+    <div class="w-100 text-center mb-2">
+      <span style="font-size:1.3em"> Espere a que carge la aplicación </span>
+    </div>
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>

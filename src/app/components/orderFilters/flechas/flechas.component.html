@@ -1,0 +1,8 @@
+<ng-container *ngIf="isAsc; else isDesc">
+  <mat-icon class="custom-font-size">expand_more</mat-icon>
+</ng-container>
+
+<ng-template #isDesc>
+  <mat-icon class="custom-font-size">expand_less</mat-icon>
+</ng-template>
+

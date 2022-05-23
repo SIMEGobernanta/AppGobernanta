@@ -1,0 +1,24 @@
+.float-custom {
+  width:80%;
+}
+
+@media screen and (min-width:767px) {
+  .float-custom {
+    display:flex;
+    justify-content:flex-end;
+  }
+}
+
+.example-form-field {
+  width: 200px !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

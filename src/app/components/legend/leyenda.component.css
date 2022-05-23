@@ -1,0 +1,19 @@
+.sucia, .revisada, .limpia, .bloqueada {
+  border: 1px solid gray;
+}
+
+.sucia {
+  background-color: rgb(250, 250, 119);
+}
+
+.revisada {
+  background-color: rgb(82, 178, 82);
+}
+
+.limpia {
+  background-color: lightskyblue;
+}
+
+.bloqueada {
+  background-color: rgb(231, 94, 94);
+}

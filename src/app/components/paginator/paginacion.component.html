@@ -1,0 +1,11 @@
+<div class="pr-4 w-100">
+  <mat-paginator
+    class="bg-light float-custom"
+    [length]='rooms.length'
+    [pageSize]="rooms.length"
+    [pageSizeOptions]="setPageSizeOptions()"
+    aria-label="Select page"
+    (page)="changePage($event)">
+  </mat-paginator>
+</div>
+
