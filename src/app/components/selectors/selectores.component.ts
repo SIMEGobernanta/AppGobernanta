@@ -17,7 +17,7 @@ export const MY_DATE_FORMATS = {
 export interface IFilters {
   prop: string;
   usedFilter: boolean;
-  filterAction: Array<string>;
+  filterAction: Array<any>;
 }
 
 
@@ -91,9 +91,10 @@ export class SelectoresComponent implements OnInit {
       //Formateo de las fechas
       const startDate = new Date(start.split('/').reverse().join('/'));
       const endDate = new Date(end.split('/').reverse().join('/'));
+      startDate.setHours(0); startDate.setMinutes(0); startDate.setSeconds(0); startDate.setMilliseconds(0);
       //Pasar la fecha limite a las 23:59:59'999 para asegurarse de que se incluye en el filtro
       endDate.setHours(23); endDate.setMinutes(59); endDate.setSeconds(59); endDate.setMilliseconds(999);
-      this.filters[2].filterAction = [startDate.toString(),endDate.toString()];
+      this.filters[2].filterAction = [startDate,endDate];
 
       this.applyFilters();
       return;
@@ -117,7 +118,17 @@ export class SelectoresComponent implements OnInit {
              this.roomInfoAux = this.roomInfoAux.filter(room => room[usedFilters[i].prop as keyof RoomInfo] === usedFilters[i].filterAction[0]);
            break;
            case 'date':
-             this.roomInfoAux =  this.roomInfoAux.filter(room => {return room.startDate >= new Date(usedFilters[i].filterAction[0]) && room.endDate <= new Date(usedFilters[i].filterAction[1])});
+             const start = moment(usedFilters[i].filterAction[0]);
+             const end = moment(usedFilters[i].filterAction[1]);
+             let roomAux: RoomInfo[] = [];
+             this.roomInfoAux.forEach(room => {
+               let startDate = moment(room.startDate);
+               let endDate = moment(room.endDate);
+               if (startDate.isBetween(start,end, undefined, '[]') || endDate.isBetween(start, end, undefined, '[]')) {
+                 roomAux.push(room);
+               }
+              });
+              this.roomInfoAux = roomAux;
            break;
         }
       }
