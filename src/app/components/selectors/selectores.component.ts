@@ -120,6 +120,7 @@ export class SelectoresComponent implements OnInit {
            case 'date':
              let roomAux: RoomInfo[] = [];
              this.roomInfoAux.forEach(room => {
+              // if (a1 <= b2) && (b1 >= a2) Si los intervalos tienen overlap...
                if ((usedFilters[i].filterAction[0] <= room.endDate) && (usedFilters[i].filterAction[1] >= room.startDate)) {
                  roomAux.push(room);
                }
