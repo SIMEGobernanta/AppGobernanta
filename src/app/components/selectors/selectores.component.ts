@@ -118,13 +118,9 @@ export class SelectoresComponent implements OnInit {
              this.roomInfoAux = this.roomInfoAux.filter(room => room[usedFilters[i].prop as keyof RoomInfo] === usedFilters[i].filterAction[0]);
            break;
            case 'date':
-             const start = moment(usedFilters[i].filterAction[0]);
-             const end = moment(usedFilters[i].filterAction[1]);
              let roomAux: RoomInfo[] = [];
              this.roomInfoAux.forEach(room => {
-               let startDate = moment(room.startDate);
-               let endDate = moment(room.endDate);
-               if (start.isBetween(startDate,endDate, undefined, '[]') || end.isBetween(startDate,endDate, undefined, '[]')) {
+               if ((usedFilters[i].filterAction[0] <= room.endDate) && (usedFilters[i].filterAction[1] >= room.startDate)) {
                  roomAux.push(room);
                }
               });
