@@ -124,7 +124,7 @@ export class SelectoresComponent implements OnInit {
              this.roomInfoAux.forEach(room => {
                let startDate = moment(room.startDate);
                let endDate = moment(room.endDate);
-               if (startDate.isBetween(start,end, undefined, '[]') || endDate.isBetween(start, end, undefined, '[]')) {
+               if (start.isBetween(startDate,endDate, undefined, '[]') || end.isBetween(startDate,endDate, undefined, '[]')) {
                  roomAux.push(room);
                }
               });
